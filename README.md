@@ -22,10 +22,10 @@
 
 ```bash
 # Клонировать репозиторий
-git clone <ссылка>
+git clone https://github.com/GoshanKotletov/Site-Letov
 
 # Перейти в папку
-cd <название-папки>
+cd Site-Letov/
 
 # Запустить
 docker-compose up -d
