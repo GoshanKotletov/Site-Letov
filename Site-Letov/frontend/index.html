@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Егор Летов — пространство</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@200..900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0a0a0a;
+            font-family: "Unbounded", 'Courier New', Courier, monospace;
+            color: #ddd;
+            line-height: 1.5;
+            padding: 20px;
+            background-image: radial-gradient(circle at 70% 20%, rgba(150, 0, 0, 0.1) 0%, transparent 40%);
+            min-height: 100vh;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .nav-btn {
+            background: #1a1a1a;
+            border: 1px solid #8b0000;
+            padding: 10px 25px;
+            font-family: "Unbounded", monospace;
+            font-weight: bold;
+            color: #ddd;
+            cursor: pointer;
+            transition: 0.2s;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+        }
+        .nav-btn:hover, .nav-btn.active {
+            background: #8b0000;
+            color: white;
+            box-shadow: 0 0 12px red;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            border: 1px solid #3d0000;
+            box-shadow: 0 0 25px rgba(180, 0, 0, 0.4);
+            padding: 25px;
+            background-color: #0d0505;
+        }
+
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin: 0 0 20px 0;
+            border-bottom: 1px solid #4a0000;
+            padding-bottom: 5px;
+        }
+        .tab-btn {
+            background: transparent;
+            border: 1px solid #4a0000;
+            padding: 12px 20px;
+            font-family: "Unbounded", 'Courier New', Courier, monospace;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #ccc;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .tab-btn:hover, .tab-btn.active {
+            background-color: #3d0000;
+            color: white;
+            border-color: #e44;
+            box-shadow: inset 0 0 6px #f33, 0 0 12px #f33;
+        }
+        .tab-pane { display: none; }
+        .tab-pane.active { display: block; }
+
+        .song-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-top: 15px;
+        }
+        .cover-area {
+            border: 2px solid #6f0000;
+            padding: 15px;
+            background: #120202;
+        }
+        .cover-place {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            background: #1f0404;
+            border: 1px dashed #b22;
+            overflow: hidden;
+        }
+        .cover-place img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .lyrics-area {
+            background: #0e0202;
+            border: 1px solid #8b0000;
+            padding: 20px;
+            background-image: radial-gradient(circle at 70% 30%, #2f0000 0%, #070000 90%);
+        }
+        .lyrics-place {
+            white-space: pre-wrap;
+            font-size: 0.9rem;
+            border-left: 4px solid #a22;
+            padding-left: 20px;
+            max-height: 600px;
+            overflow-y: auto;
+            font-family: monospace;
+        }
+
+        .posters-section {
+            margin-top: 40px;
+            border-top: 2px solid #8b0000;
+            padding-top: 30px;
+        }
+        .posters-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .poster-item {
+            background: #120202;
+            border: 1px solid #6f0000;
+            padding: 10px;
+            text-align: center;
+        }
+        .poster-img {
+            width: 100%;
+            aspect-ratio: 2 / 3;
+            background: #1f0404;
+            overflow: hidden;
+            margin-bottom: 8px;
+        }
+        .poster-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .history-section {
+            margin: 50px 0 20px;
+            border-top: 2px solid #8b0000;
+            padding-top: 30px;
+        }
+        .history-grid {
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            gap: 30px;
+        }
+        .history-photo-place {
+            background: #1d0303;
+            border: 2px solid #9b0000;
+            overflow: hidden;
+        }
+        .history-photo-place img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .history-text {
+            background: #100404;
+            border-left: 8px solid #a22;
+            padding: 20px 25px;
+        }
+
+        .reviews-section {
+            margin-top: 50px;
+            border-top: 2px solid #8b0000;
+            padding-top: 30px;
+        }
+        .review-form {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+        .review-form input {
+            flex: 1;
+            padding: 12px 15px;
+            background: #0e0202;
+            border: 1px solid #8b0000;
+            color: white;
+            font-family: "Unbounded", monospace;
+        }
+        .review-form button {
+            padding: 12px 24px;
+            background: #8b0000;
+            color: white;
+            border: none;
+            font-family: "Unbounded", monospace;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .review-item {
+            border-left: 4px solid #a22;
+            background: #120202;
+            padding: 14px 18px;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .review-author {
+            font-size: 0.7rem;
+            color: #aa6666;
+            margin-bottom: 5px;
+        }
+        .review-text { flex: 1; word-break: break-word; }
+        .review-likes {
+            color: #ff8888;
+            background: #2a0000;
+            padding: 4px 12px;
+            border-radius: 40px;
+            font-size: 0.8rem;
+        }
+        .like-btn { cursor: pointer; margin-left: 5px; }
+
+        .account-block {
+            background: #0e0202;
+            border: 1px solid #8b0000;
+            padding: 30px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .account-block input {
+            width: 100%;
+            padding: 12px;
+            background: #1a0404;
+            border: 1px solid #8b0000;
+            color: white;
+            margin-bottom: 15px;
+        }
+        .account-block button {
+            width: 100%;
+            padding: 12px;
+            background: #8b0000;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+        .error-message { color: #ff6666; text-align: center; margin-top: 10px; }
+        .success-message { color: #66ff66; text-align: center; margin-top: 10px; }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+        .product-card {
+            background: #120202;
+            border: 1px solid #6f0000;
+            padding: 15px;
+            text-align: center;
+        }
+        .product-img {
+            width: 100%;
+            aspect-ratio: 1;
+            background: #1f0404;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .product-name { font-size: 1rem; margin: 10px 0; }
+        .product-price { color: #ff8888; font-size: 1.2rem; margin: 10px 0; }
+        .product-stock { font-size: 0.7rem; color: #aa6666; }
+        .add-to-cart {
+            background: #8b0000;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .cart-sidebar {
+            position: fixed;
+            right: 0;
+            top: 0;
+            width: 350px;
+            height: 100%;
+            background: #0a0505;
+            border-left: 2px solid #8b0000;
+            padding: 20px;
+            transform: translateX(100%);
+            transition: 0.3s;
+            z-index: 1000;
+            overflow-y: auto;
+        }
+        .cart-sidebar.open { transform: translateX(0); }
+        .cart-toggle {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            background: #8b0000;
+            color: white;
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding: 10px 0;
+            border-bottom: 1px solid #3d0000;
+        }
+        .checkout-btn {
+            width: 100%;
+            padding: 12px;
+            background: #8b0000;
+            color: white;
+            border: none;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        .admin-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        .admin-table th, .admin-table td {
+            border: 1px solid #6f0000;
+            padding: 10px;
+            text-align: left;
+        }
+        .admin-table th {
+            background: #1a0404;
+        }
+        .status-select {
+            background: #1a0404;
+            color: white;
+            border: 1px solid #8b0000;
+            padding: 5px;
+        }
+
+        .footer {
+            margin-top: 45px;
+            border-top: 1px solid #620000;
+            padding-top: 15px;
+            text-align: right;
+            color: #6d3f3f;
+        }
+
+        @media (max-width: 700px) {
+            .song-layout, .history-grid, .posters-grid, .products-grid {
+                grid-template-columns: 1fr;
+            }
+            .cart-sidebar { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="nav-buttons">
+    <button class="nav-btn active" data-nav="main">Главная</button>
+    <button class="nav-btn" data-nav="merch">Мерч</button>
+    <button class="nav-btn" data-nav="account">Аккаунт</button>
+    <button class="nav-btn admin-only" data-nav="admin" style="display:none;">Админка</button>
+</div>
+
+<!-- ГЛАВНАЯ -->
+<div id="main" class="nav-section" style="display: block;">
+    <div class="container">
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="tab1">Всё идёт по плану</button>
+            <button class="tab-btn" data-tab="tab2">Про дурачка</button>
+            <button class="tab-btn" data-tab="tab3">Русское поле</button>
+            <button class="tab-btn" data-tab="tab4">Офелия</button>
+            <button class="tab-btn" data-tab="tab5">Моя оборона</button>
+            <button class="tab-btn" data-tab="tab6">Поперек</button>
+        </div>
+
+        <div class="tab-pane active" id="tab1">
+            <div class="song-layout">
+                <div class="cover-area">
+                    <div class="cover-place"><img src="images/orig.jfif" alt="Всё идёт по плану"></div>
+                    <p style="margin-top:8px; color:#b66; text-align:center;">ГрОб · 1988</p>
+                </div>
+                <div class="lyrics-area"><div class="lyrics-place">
+Границы ключ переломлен пополам<br>
+А наш батюшка Ленин совсем усоп<br>
+Он разложился на плесень и на липовый мёд<br>
+А перестройка всё идёт и идёт по плану<br>
+А вся грязь превратилась в голый лёд<br><br>
+и всё идёт по плану<br><br>
+А моя судьба захотела на покой<br>
+Я обещал ей не участвовать в военной игре<br>
+Но на фуражке на моей серп и молот и звезда<br>
+Как это трогательно — серп и молот и звезда<br>
+Лихой фонарь ожидания мотается<br><br>
+и всё идёт по плану<br><br>
+А моей женой накормили толпу<br>
+Мировым кулаком растоптали ей грудь<br>
+Всенародной свободой растерзали ей плоть<br>
+Так закопайте её во Христе -<br><br>
+ведь всё идёт по плану<br><br>
+Один лишь дедушка Ленин хороший был вождь<br>
+А все другие остальные — такое дерьмо<br>
+А все другие враги и такие дураки<br>
+Над родною над отчизной бесноватый снег шёл<br>
+Я купил журнал "Корея" — там тоже хорошо<br>
+Там товарищ Ким Ир Сен там тоже что у нас<br>
+Я уверен,что у них тоже самое —<br><br>
+и всё идёт по плану<br><br>
+А при коммунизме всё будет заебись<br>
+Он наступит скоро — надо только подождать<br>
+Там всё будет бесплатно,там всё будет в кайф<br>
+Там наверное вощще не надо будет (умирать)<br>
+Я проснулся среди ночи и понял, что -<br><br>
+ВСЁ ИДЁТ ПО ПЛАНУ
+                </div></div>
+            </div>
+        </div>
+
+        <div class="tab-pane" id="tab2">
+            <div class="song-layout">
+                <div class="cover-area">
+                    <div class="cover-place"><img src="images/биб.jfif" alt="Про дурачка"></div>
+                    <p style="margin-top:8px; color:#b66; text-align:center;">ГрОб · 1989</p>
+                </div>
+                <div class="lyrics-area"><div class="lyrics-place">
+Ходит дурачок по лесу,<br>
+Ищет дурачок глупее себя.<br>
+Ходит дурачок по лесу,<br>
+Ищет дурачок глупее себя.<br><br>
+Идет Смерть по улице, несет блины на блюдце<br>
+Кому вынется - тому сбудется.<br>
+Тронет за плечо - поцелует горячо.<br>
+Полетят копейки из-за пазухи долой!<br><br>
+Ходит дурачок по лесу,<br>
+Ищет дурачок глупее себя.<br>
+Ходит дурачок по лесу,<br>
+Ищет дурачок глупее себя.<br><br>
+Зубчатые колеса завертелись в башке<br>
+В промокшей башке под бронебойным дождем<br>
+Закипела ртуть, замахнулся кулак<br>
+Да только если крест на грудь,<br>
+То на последний глаз - пятак.<br><br>
+Ходит дурачок по лесу,<br>
+Ищет дурачок глупее себя.<br>
+Ходит дурачок по лесу,<br>
+Ищет дурачок глупее себя.<br><br>
+Моя мертвая мамка вчера ко мне пришла<br>
+Все грозила кулаком, называла дураком<br>
+Предрассветный комар опустился в мой пожар<br>
+Да захлебнулся кровью из моего виска<br><br>
+Ходит дурачок по миру,<br>
+Ищет дурачок глупее себя.<br>
+Ходит дурачок по миру,<br>
+Ищет дурачок глупее себя.<br><br>
+А сегодня я воздушных шариков купил<br>
+Полечу на них над расчудесной страной<br>
+Буду пух глотать, буду в землю нырять<br>
+И на все вопросы отвечать: "Всегда живой!"<br><br>
+Ходит дурачок по небу,<br>
+Ищет дурачок глупее себя.<br>
+Ходит дурачок по небу,<br>
+Ищет дурачок глупее себя.<br><br>
+Светило Солнышко и ночью и днем<br>
+Не бывает атеистов в окопах под огнем<br>
+Добежит слепой, победит ничтожный<br>
+Такое вам и не снилось.<br><br>
+Ходит дурачок по лесу,<br>
+Ищет дурачок глупее себя.<br>
+Ходит дурачок по лесу,<br>
+Ищет дурачок глупее себя.<br>
+Ходит дурачок по лесу,<br>
+Ищет дурачок глупее себя.<br>
+Ходит дурачок по лесу,<br>
+Ищет дурачок глупее себя.
+                </div></div>
+            </div>
+        </div>
+
+        <div class="tab-pane" id="tab3">
+            <div class="song-layout">
+                <div class="cover-area">
+                    <div class="cover-place"><img src="images/i.jfif" alt="Русское поле"></div>
+                    <p style="margin-top:8px; color:#b66; text-align:center;">ГрОб · 1990</p>
+                </div>
+                <div class="lyrics-area"><div class="lyrics-place">
+Трогательным ножичком пытать свою плоть<br>
+Трогательным ножичком пытать свою плоть<br>
+До крови прищемить добровольные пальцы<br>
+Отважно смакуя леденцы на палочке<br>
+Целеустремленно набивать карманы<br>
+Мертвыми мышатами, живыми хуями<br>
+Шоколадными конфетами<br>
+И нерукотворными пиздюлями<br><br>
+На патриархальной свалке устаревших понятий<br>
+Использованных образов и вежливых слов<br>
+Покончив с собою, уничтожить весь мир<br>
+Покончить с собою — уничтожить весь мир<br><br>
+Вечность пахнет нефтью…<br>
+Вечность пахнет нефтью…<br><br>
+Словно иней, сердобольный смех<br>
+Словно иней, сердобольный смех<br>
+Словно иней, сердобольный смех<br>
+Славно валится на, на, на…<br><br>
+Русское поле экспериментов<br>
+Русское поле экспериментов<br>
+Русское поле экспериментов<br>
+Русское поле экспериментов<br><br>
+География подлости, орфография ненависти<br>
+Апология невежества, мифология оптимизма<br>
+Законы гаубицы благонравия<br>
+Знатное пиршество благоразумия<br>
+Устами ребенка глаголет яма<br>
+Устами ребенка глаголет пуля<br><br>
+Вечность пахнет нефтью…<br>
+Вечность пахнет нефтью…<br><br>
+Словно иней, сердобольный смех<br>
+Словно иней, сердобольный смех<br>
+Словно иней, сердобольный смех<br>
+Славно валится на, на, на…<br><br>
+Русское поле экспериментов<br>
+Русское поле экспериментов<br>
+Русское поле экспериментов<br>
+Русское поле экспериментов<br><br>
+Мастерство быть излишним, подобно мне<br>
+Мастерство быть любимым, подобно петле<br>
+Мастерство быть глобальным как печеное яблоко<br>
+Искусство вовремя уйти в сторонку<br>
+Искусство быть посторонним<br>
+Искусство быть посторонним<br><br>
+Новейшее средство для очистки духовок<br>
+От задохнувшихся по собственной воле<br>
+Новейшее средство для очистки веревок<br>
+От скверного запаха немытых шей<br>
+Новейшее средство находить виновных<br>
+Новейшее средство находить виновных<br><br>
+Русское поле экспериментов<br>
+Русское поле экспериментов<br>
+Русское поле экспериментов<br>
+Русское поле экспериментов<br><br>
+За открывшейся дверью — пустота<br>
+Это значит, что кто-то пришел за тобой<br>
+Это значит, что теперь ты кому-то<br>
+Понадо-пона-надо-пона-надобился…<br><br>
+А снег все идет, а снег все идет<br>
+Русское поле источает снег…<br><br>
+Иных хоронили в упаковке глазенок<br>
+Иных хоронили в упаковке газет…<br><br>
+А то, что на бойне умертвили бычка —<br>
+На то всеобщая радость, всеобщая гордость<br>
+Всеобщая ненависть, всеобщая воля<br>
+Всеобщая воля, да всеобщая старость…<br><br>
+Набить до отказа собой могилу<br>
+Это значит наследовать Землю<br>
+Что же такое наследовать Землю?<br>
+Это значит исчерпать терпение<br>
+Что и требовалось доказать…<br>
+Что и требовалось доказать!<br><br>
+Словно иней, сердобольный смех<br>
+Словно иней, сердобольный смех<br>
+Словно иней, сердобольный смех<br>
+Славно валится на, на, на<br><br>
+Русское поле экспериментов<br>
+Русское поле экспериментов<br>
+Русское поле экспериментов<br>
+Русское поле экспериментов<br><br>
+Вечность пахнет нефтью…<br>
+Вечность пахнет нефтью…
+                </div></div>
+            </div>
+        </div>
+
+        <div class="tab-pane" id="tab4">
+            <div class="song-layout">
+                <div class="cover-area">
+                    <div class="cover-place"><img src="images/офелия.jfif" alt="Офелия"></div>
+                    <p style="margin-top:8px; color:#b66; text-align:center;">ГрОб · 1992</p>
+                </div>
+                <div class="lyrics-area"><div class="lyrics-place">
+Далекая Офелия смеялась во сне<br>
+Пузатый дрозд, мохнатый олень<br>
+Привычно прошлогодний нарисованный снег<br>
+Легко, светло и весело хрустит на зубах<br><br>
+Нарядная Офелия текла через край<br>
+Змеиный мед, малиновый яд<br>
+Резиновый трамвайчик, оцинкованный май<br>
+Просроченный билетик на повторный сеанс<br><br>
+Влюбленная Офелия плыла себе вдаль<br>
+Сияла ночь, звенела земля<br>
+Стремительно спешили, никого не таясь<br>
+Часы в свою нелепую смешную страну<br><br>
+Послушная Офелия плыла на восток<br>
+Чудесный плен, гранитный восторг<br>
+Лимонная тропинка в апельсиновый лес<br>
+Невидимый лифт на запредельный этаж<br><br>
+Далекая Офелия смеялась во сне<br>
+Усталый бес, ракитовый куст<br>
+Дареные лошадки разбрелись на заре<br>
+На все четыре стороны, попробуй, поймай
+                </div></div>
+            </div>
+        </div>
+
+        <div class="tab-pane" id="tab5">
+            <div class="song-layout">
+                <div class="cover-area">
+                    <div class="cover-place"><img src="images/моя оборона.jpg" alt="Моя оборона"></div>
+                    <p style="margin-top:8px; color:#b66; text-align:center;">ГрОб · 1990</p>
+                </div>
+                <div class="lyrics-area"><div class="lyrics-place">
+Пластмассовый мир победил<br>
+Пластмассовый мир победил<br>
+Макет оказался сильней<br>
+Последний кораблик остыл<br>
+Последний фонарик устал<br>
+А в горле сопят комья воспоминаний<br><br>
+О-о! Моя Оборона!<br>
+Солнечный зайчик стеклянного глаза<br>
+О-о! Моя Оборона!<br>
+Траурный мячик нелепого мира<br>
+Траурный мячик дешёвого мира<br><br>
+Пластмассовый мир победил<br>
+Ликует картонный набат<br>
+Кому нужен ломтик июльского неба?<br><br>
+О-о! Моя Оборона!<br>
+Солнечный зайчик незрячего мира<br>
+О-о! Моя Оборона!<br>
+Траурный мячик стеклянного глаза<br>
+Траурный зайчик нелепого мира<br><br>
+Пластмассовый мир победил<br>
+Макет оказался сильней<br>
+Последний кораблик остыл<br>
+Последний фонарик устал<br>
+А в горле сопят комья воспоминаний<br><br>
+О-о! Моя Оборона!<br>
+Траурный мячик незрячего мира<br>
+О-о! Моя Оборона!<br>
+Солнечный зайчик стеклянного глаза<br>
+О-о! Моя Оборона!<br>
+О-о! Моя Оборона!<br>
+О-о! Моя Оборона!
+                </div></div>
+            </div>
+        </div>
+
+        <div class="tab-pane" id="tab6">
+            <div class="song-layout">
+                <div class="cover-area">
+                    <div class="cover-place"><img src="images/poperek.jpg" alt="Поперек"></div>
+                    <p style="margin-top:8px; color:#b66; text-align:center;">ГрОб · 2004</p>
+                </div>
+                <div class="lyrics-area"><div class="lyrics-place">
+Не вейся шестерёнкой в механизме государства<br>
+Армейской мясорубке не давай себя сжевать<br><br>
+                   Назло!<br>
+                   Поперёк!<br><br>
+Сторонникам порядка навреди как можно больше<br>
+В проигранной войне сопротивляйся до конца<br><br>
+                   Назло!<br>
+                   Поперёк!<br><br>
+Шагай на красный свет и нарушай правопорядок<br>
+Законам и запретам поступай наперекор<br><br>
+                   Назло!<br>
+                   Поперёк!<br><br>
+На всякое насилье отвечай сопротивленьем<br>
+В безликом окруженьи будь всегда самим собой<br><br>
+                   Назло!<br>
+                   Поперёк!<br><br>
+В минуту молчания ори как можно громче<br>
+По линованной бумаге ты пиши напоперёк!<br><br>
+                   Назло!<br>
+                   Поперёк!<br><br>
+Делай с нами,<br>
+делай как мы,<br>
+делай лучше нас!
+                </div></div>
+            </div>
+
+            <div class="posters-section">
+                <div class="posters-title">⚡ ПЛАКАТЫ ⚡</div>
+                <div class="posters-grid">
+                    <div class="poster-item"><div class="poster-img"><img src="images/plakat1.jpg" alt="Плакат 1"></div><div class="poster-caption">Плакат 1</div></div>
+                    <div class="poster-item"><div class="poster-img"><img src="images/plakat2.jpg" alt="Плакат 2"></div><div class="poster-caption">Плакат 2</div></div>
+                    <div class="poster-item"><div class="poster-img"><img src="images/plakat3.jpg" alt="Плакат 3"></div><div class="poster-caption">Плакат 3</div></div>
+                    <div class="poster-item"><div class="poster-img"><img src="images/plakat4.jpg" alt="Плакат 4"></div><div class="poster-caption">Плакат 4</div></div>
+                    <div class="poster-item"><div class="poster-img"><img src="images/plakat5.jpg" alt="Плакат 5"></div><div class="poster-caption">Плакат 5</div></div>
+                    <div class="poster-item"><div class="poster-img"><img src="images/plakat6.jpg" alt="Плакат 6"></div><div class="poster-caption">Плакат 6</div></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="history-section">
+            <div class="history-title">✧ ИСТОРИЯ ✧</div>
+            <div class="history-grid">
+                <div class="history-photo-place"><img src="images/Егор.jpg" alt="Егор Летов"></div>
+                <div class="history-text">
+                    <p><strong>Игорь Фёдорович Летов</strong> (1964–2008) — поэт, музыкант, основатель группы «Гражданская оборона». Родился в Омске. С конца 80-х — голос сибирского андеграунда, его тексты стали манифестом свободы.</p>
+                    <p>Летов создал десятки альбомов: «Мышеловка», «Хорошо!!», «Солнцеворот», «Долгая счастливая жизнь». Философия Егора — вне времени. Он остаётся главным панк-поэтом России.</p>
+                    <p>«Жить — значит бороться. Моя жизнь — моя оборона». Умер 19 февраля 2008 года.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="reviews-section">
+            <h2>Отзывы</h2>
+            <div class="review-form">
+                <input id="reviewInput" placeholder="Напишите свои мысли о Егоре Летове..." autocomplete="off">
+                <button onclick="addReview()">Добавить</button>
+            </div>
+            <div id="reviewList"></div>
+        </div>
+
+        <div class="footer">Вечная память Егору Летову</div>
+    </div>
+</div>
+
+<!-- МЕРЧ -->
+<div id="merch" class="nav-section" style="display: none;">
+    <div class="container">
+        <h1 style="color:#aa5555;">Мерч</h1>
+        <div id="productsGrid" class="products-grid"></div>
+    </div>
+</div>
+
+<!-- АККАУНТ -->
+<div id="account" class="nav-section" style="display: none;">
+    <div class="container">
+        <div class="account-block">
+            <div id="unauthBlock">
+                <h2>Регистрация</h2>
+                <input type="text" id="regUsername" placeholder="Логин">
+                <input type="password" id="regPassword" placeholder="Пароль (мин. 3 символа)">
+                <button onclick="registerUser()">Зарегистрироваться</button>
+                <h2>Вход</h2>
+                <input type="text" id="loginUsername" placeholder="Логин">
+                <input type="password" id="loginPassword" placeholder="Пароль">
+                <button onclick="loginUser()">Войти</button>
+                <div id="accountMessage"></div>
+            </div>
+            <div id="authBlock" style="display: none;">
+                <div class="profile-info">
+                    <p>✅ Ты вошёл как: <strong id="currentUsername"></strong></p>
+                    <button onclick="logoutUser()">Выйти</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- АДМИНКА -->
+<div id="admin" class="nav-section" style="display: none;">
+    <div class="container">
+        <h1 style="color:#aa5555;">Админ-панель</h1>
+        <div style="display: flex; gap: 20px; margin-bottom: 20px;">
+            <button onclick="showAdminTab('users')" id="adminUsersBtn" style="background:#8b0000; padding:10px 20px; border:none; color:white; cursor:pointer;">Пользователи</button>
+            <button onclick="showAdminTab('orders')" id="adminOrdersBtn" style="background:#3d0000; padding:10px 20px; border:none; color:white; cursor:pointer;">Заказы</button>
+        </div>
+        <div id="adminUsersPanel"></div>
+        <div id="adminOrdersPanel" style="display:none;"></div>
+    </div>
+</div>
+
+<!-- КОРЗИНА -->
+<button class="cart-toggle" onclick="toggleCart()">🛒<span id="cartCount" style="position:absolute; top:-5px; right:-5px; background:red; border-radius:50%; width:20px; height:20px; font-size:12px;">0</span></button>
+<div id="cartSidebar" class="cart-sidebar">
+    <h3>Корзина</h3>
+    <div id="cartItems"></div>
+    <div id="cartTotal" style="font-size:1.2rem; margin-top:15px;"></div>
+    <button class="checkout-btn" onclick="checkout()">Оформить заказ</button>
+    <button onclick="toggleCart()" style="margin-top:10px; background:#333; color:white; border:none; padding:8px;">Закрыть</button>
+</div>
+
+<script>
+    const API_BASE = '/api';
+    let currentUser = null;
+    let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+    let products = [];
+
+    function showNavSection(sectionId) {
+        document.querySelectorAll('.nav-section').forEach(s => s.style.display = 'none');
+        document.getElementById(sectionId).style.display = 'block';
+        document.querySelectorAll('.nav-btn').forEach(btn => {
+            btn.classList.remove('active');
+            if (btn.getAttribute('data-nav') === sectionId) btn.classList.add('active');
+        });
+    }
+
+    document.querySelectorAll('.nav-btn').forEach(btn => {
+        btn.addEventListener('click', function() { showNavSection(this.getAttribute('data-nav')); });
+    });
+
+    function checkAuth() {
+        const user = localStorage.getItem('letov_user');
+        const isAdminFlag = localStorage.getItem('letov_is_admin') === 'true';
+        if (user) {
+            currentUser = user;
+            document.getElementById('unauthBlock').style.display = 'none';
+            document.getElementById('authBlock').style.display = 'block';
+            document.getElementById('currentUsername').innerText = user;
+            const adminBtn = document.querySelector('.nav-btn[data-nav="admin"]');
+            if (adminBtn) adminBtn.style.display = isAdminFlag ? 'block' : 'none';
+        } else {
+            currentUser = null;
+            document.getElementById('unauthBlock').style.display = 'block';
+            document.getElementById('authBlock').style.display = 'none';
+            const adminBtn = document.querySelector('.nav-btn[data-nav="admin"]');
+            if (adminBtn) adminBtn.style.display = 'none';
+        }
+        updateCartDisplay();
+    }
+
+    async function registerUser() {
+        const username = document.getElementById('regUsername').value.trim();
+        const password = document.getElementById('regPassword').value;
+        const msgDiv = document.getElementById('accountMessage');
+        if (!username || !password) { msgDiv.innerHTML = '<div class="error-message">Заполните все поля</div>'; return; }
+        if (password.length < 3) { msgDiv.innerHTML = '<div class="error-message">Пароль >= 3 символов</div>'; return; }
+        try {
+            const res = await fetch(`${API_BASE}/register`, {
+                method: 'POST', headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, password })
+            });
+            const data = await res.json();
+            if (data.error) msgDiv.innerHTML = `<div class="error-message">${data.error}</div>`;
+            else msgDiv.innerHTML = '<div class="success-message">Регистрация успешна! Теперь войдите.</div>';
+        } catch(err) { msgDiv.innerHTML = '<div class="error-message">Ошибка сервера</div>'; }
+    }
+
+    async function loginUser() {
+        const username = document.getElementById('loginUsername').value.trim();
+        const password = document.getElementById('loginPassword').value;
+        const msgDiv = document.getElementById('accountMessage');
+        if (!username || !password) { msgDiv.innerHTML = '<div class="error-message">Заполните все поля</div>'; return; }
+        try {
+            const res = await fetch(`${API_BASE}/login`, {
+                method: 'POST', headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, password })
+            });
+            const data = await res.json();
+            if (data.error) msgDiv.innerHTML = `<div class="error-message">${data.error}</div>`;
+            else {
+                localStorage.setItem('letov_user', data.user.username);
+                localStorage.setItem('letov_is_admin', data.user.is_admin);
+                msgDiv.innerHTML = '';
+                checkAuth();
+                if (data.user.is_admin) showNavSection('admin');
+            }
+        } catch(err) { msgDiv.innerHTML = '<div class="error-message">Ошибка сервера</div>'; }
+    }
+
+    function logoutUser() {
+        localStorage.removeItem('letov_user');
+        localStorage.removeItem('letov_is_admin');
+        checkAuth();
+        showNavSection('main');
+    }
+
+    async function loadReviews() {
+        try {
+            const res = await fetch(`${API_BASE}/reviews`);
+            const data = await res.json();
+            const container = document.getElementById('reviewList');
+            if (!container) return;
+            if (data.length === 0) { container.innerHTML = '<div>Пока отзывов нет</div>'; return; }
+            container.innerHTML = data.map(r => `
+                <div class="review-item">
+                    <div><div class="review-author">✍️ ${escapeHtml(r.username || 'Аноним')}</div>
+                    <div class="review-text">${escapeHtml(r.text)}</div></div>
+                    <div class="review-likes">❤️ ${r.likes}<span class="like-btn" onclick="likeReview(${r.id})"> 👍</span></div>
+                </div>
+            `).join('');
+        } catch(e) { console.error(e); }
+    }
+
+    async function addReview() {
+        const input = document.getElementById('reviewInput');
+        const text = input.value.trim();
+        if (!text) { alert('Напишите отзыв'); return; }
+        if (!currentUser) { alert('Войдите в аккаунт чтобы оставить отзыв'); return; }
+        try {
+            await fetch(`${API_BASE}/reviews`, {
+                method: 'POST', headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ text, username: currentUser })
+            });
+            input.value = '';
+            loadReviews();
+        } catch(e) { alert('Ошибка'); }
+    }
+
+    async function likeReview(id) {
+        try { await fetch(`${API_BASE}/reviews/${id}/like`, { method: 'POST' }); loadReviews(); } catch(e) {}
+    }
+
+    async function loadProducts() {
+        try {
+            const res = await fetch(`${API_BASE}/products`);
+            products = await res.json();
+            renderProducts();
+        } catch(e) { console.error(e); }
+    }
+
+    function renderProducts() {
+        const grid = document.getElementById('productsGrid');
+        if (!grid) return;
+        grid.innerHTML = products.map(p => `
+            <div class="product-card">
+                <div class="product-img"><img src="${p.image || 'images/placeholder.jpg'}" onerror="this.src='images/placeholder.jpg'"></div>
+                <div class="product-name">${escapeHtml(p.name)}</div>
+                <div class="product-price">${p.price} ₽</div>
+                <div class="product-stock">${p.stock > 0 ? `В наличии: ${p.stock}` : 'Нет в наличии'}</div>
+                <button class="add-to-cart" onclick="addToCart(${p.id})" ${p.stock === 0 ? 'disabled' : ''}>В корзину</button>
+            </div>
+        `).join('');
+    }
+
+    function addToCart(productId) {
+        const product = products.find(p => p.id === productId);
+        if (!product || product.stock === 0) return;
+        const existing = cart.find(i => i.id === productId);
+        if (existing) existing.quantity++;
+        else cart.push({ id: product.id, name: product.name, price: product.price, quantity: 1 });
+        localStorage.setItem('cart', JSON.stringify(cart));
+        updateCartDisplay();
+    }
+
+    function updateCartDisplay() {
+        const container = document.getElementById('cartItems');
+        const totalSpan = document.getElementById('cartTotal');
+        const countSpan = document.getElementById('cartCount');
+        if (!container) return;
+        if (cart.length === 0) { container.innerHTML = '<div>Корзина пуста</div>'; totalSpan.innerHTML = ''; if(countSpan) countSpan.innerText = '0'; return; }
+        let total = 0;
+        let itemCount = 0;
+        container.innerHTML = cart.map((item, idx) => {
+            total += item.price * item.quantity;
+            itemCount += item.quantity;
+            return `<div class="cart-item"><span>${escapeHtml(item.name)} x${item.quantity}</span><span>${item.price * item.quantity} ₽ <button onclick="removeFromCart(${idx})" style="background:red; border:none; color:white; padding:2px 8px;">✕</button></span></div>`;
+        }).join('');
+        totalSpan.innerHTML = `<strong>Итого: ${total} ₽</strong>`;
+        if(countSpan) countSpan.innerText = itemCount;
+    }
+
+    function removeFromCart(idx) { cart.splice(idx,1); localStorage.setItem('cart', JSON.stringify(cart)); updateCartDisplay(); }
+    function toggleCart() { document.getElementById('cartSidebar').classList.toggle('open'); }
+
+    async function checkout() {
+        if (!currentUser) { alert('Войдите в аккаунт для оформления заказа'); toggleCart(); showNavSection('account'); return; }
+        if (cart.length === 0) { alert('Корзина пуста'); return; }
+        const address = prompt('Введите адрес доставки:');
+        const phone = prompt('Введите телефон:');
+        if (!address || !phone) return;
+        const total = cart.reduce((s,i) => s + i.price * i.quantity, 0);
+        try {
+            const res = await fetch(`${API_BASE}/orders`, {
+                method: 'POST', headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username: currentUser, items: cart, total, address, phone })
+            });
+            const data = await res.json();
+            if (data.success) {
+                alert('Заказ оформлен!');
+                cart = [];
+                localStorage.setItem('cart', JSON.stringify(cart));
+                updateCartDisplay();
+                toggleCart();
+            } else alert('Ошибка');
+        } catch(e) { alert('Ошибка'); }
+    }
+
+    let adminCurrentTab = 'users';
+
+    function showAdminTab(tab) {
+        adminCurrentTab = tab;
+        document.getElementById('adminUsersPanel').style.display = tab === 'users' ? 'block' : 'none';
+        document.getElementById('adminOrdersPanel').style.display = tab === 'orders' ? 'block' : 'none';
+        document.getElementById('adminUsersBtn').style.background = tab === 'users' ? '#8b0000' : '#3d0000';
+        document.getElementById('adminOrdersBtn').style.background = tab === 'orders' ? '#8b0000' : '#3d0000';
+        if (tab === 'users') loadAdminUsers();
+        else loadAdminOrders();
+    }
+
+    async function loadAdminUsers() {
+        if (!currentUser) return;
+        try {
+            const res = await fetch(`${API_BASE}/admin/users?username=${encodeURIComponent(currentUser)}`);
+            if (!res.ok) { document.getElementById('adminUsersPanel').innerHTML = '<div class="error-message">Доступ запрещён</div>'; return; }
+            const users = await res.json();
+            document.getElementById('adminUsersPanel').innerHTML = `
+                <table class="admin-table"><thead><tr><th>ID</th><th>Логин</th><th>Админ</th><th>Дата регистрации</th></tr></thead><tbody>
+                ${users.map(u => `<tr><td>${u.id}</td><td>${escapeHtml(u.username)}</td><td>${u.is_admin ? '✅' : '❌'}</td><td>${new Date(u.created_at).toLocaleString()}</td></tr>`).join('')}
+                </tbody></table>
+            `;
+        } catch(e) { console.error(e); }
+    }
+
+    async function loadAdminOrders() {
+        if (!currentUser) return;
+        try {
+            const res = await fetch(`${API_BASE}/admin/orders?username=${encodeURIComponent(currentUser)}`);
+            if (!res.ok) { document.getElementById('adminOrdersPanel').innerHTML = '<div class="error-message">Доступ запрещён</div>'; return; }
+            const orders = await res.json();
+            document.getElementById('adminOrdersPanel').innerHTML = `
+                <table class="admin-table"><thead><tr><th>ID</th><th>Пользователь</th><th>Сумма</th><th>Статус</th><th>Телефон</th><th>Адрес</th><th>Товары</th></tr></thead><tbody>
+                ${orders.map(o => `<tr>
+                    <td>${o.id}</td><td>${escapeHtml(o.username)}</td><td>${o.total} ₽</td>
+                    <td><select class="status-select" data-order-id="${o.id}" onchange="updateOrderStatus(${o.id}, this.value)"><option value="new" ${o.status==='new'?'selected':''}>Новый</option><option value="processing" ${o.status==='processing'?'selected':''}>В обработке</option><option value="shipped" ${o.status==='shipped'?'selected':''}>Отправлен</option><option value="delivered" ${o.status==='delivered'?'selected':''}>Доставлен</option></select></td>
+                    <td>${escapeHtml(o.phone || '-')}</td><td>${escapeHtml(o.address || '-')}</td>
+                    <td>${o.items?.map(i => `${i.product_name} x${i.quantity}`).join(', ') || ''}</td>
+                </tr>`).join('')}
+                </tbody></table>
+            `;
+        } catch(e) { console.error(e); }
+    }
+
+    async function updateOrderStatus(orderId, status) {
+        if (!currentUser) return;
+        try {
+            await fetch(`${API_BASE}/admin/orders/${orderId}/status?username=${encodeURIComponent(currentUser)}`, {
+                method: 'PUT', headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ status })
+            });
+        } catch(e) { console.error(e); }
+    }
+
+    function escapeHtml(str) { if(!str) return ''; return str.replace(/[&<>]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;'})[m]); }
+
+    window.onload = () => {
+        checkAuth();
+        loadReviews();
+        loadProducts();
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+                this.classList.add('active');
+                document.getElementById(this.getAttribute('data-tab')).classList.add('active');
+            });
+        });
+    };
+</script>
+</body>
+</html>
