@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>ГРОБ · ЕВГЕНИЙ ЛИЩЕНКО · МАХНО</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/tabs.css">
+    <link rel="stylesheet" href="../css/animations.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,900;1,300&display=swap" rel="stylesheet">
+    <style>
+        .back-btn {
+            display: inline-block;
+            margin: 2rem 0;
+            padding: 1rem 2rem;
+            border: 1px solid var(--text);
+            color: var(--text);
+            text-decoration: none;
+            font-family: var(--font-mono);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            transition: all 0.3s;
+        }
+        .back-btn:hover {
+            background: var(--text);
+            color: var(--bg);
+        }
+        .track-list {
+            list-style: none;
+            margin-top: 1rem;
+        }
+        .track-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-secondary);
+        }
+        .track-list li:before {
+            content: "⚡";
+            margin-right: 1rem;
+            color: var(--text);
+        }
+    </style>
+</head>
+<body class="dark">
+    <div class="cursor-anarchy">Ⓐ</div>
+    <div class="cursor-dot"></div>
+    <canvas id="stars-canvas"></canvas>
+    <div class="noise-overlay"></div>
+    <div class="vignette-overlay"></div>
+    <div class="scanline-overlay"></div>
+    
+    <div class="audio-control" id="audioBtn" title="ВКЛ/ВЫКЛ · АТМОСФЕРА">▶</div>
+    <div class="fullscreen-btn" id="fullscreenBtn" title="ПОЛНЫЙ ЭКРАН">⛶</div>
+    
+    <main class="layout" id="mainContent">
+        <header class="header">
+            <div class="logo">
+                <a href="../index.html" style="text-decoration: none; color: inherit;">
+                    <span class="logo-main">ГРОБ</span>
+                    <span class="logo-sub">ГРАЖДАНСКАЯ ОБОРОНА · 1984–∞</span>
+                </a>
+            </div>
+            <nav class="tabs-container">
+                <div class="tabs">
+                    <a href="../index.html" class="tab">ГЕНЕЗИС</a>
+                    <a href="../golden.html" class="tab">ЗОЛОТОЙ ВЕК</a>
+                    <a href="../psych.html" class="tab">ПСИХОДЕЛИЯ</a>
+                    <a href="../lineup.html" class="tab active">СОСТАВ</a>
+                    <a href="../discography.html" class="tab">ДИСКОГРАФИЯ</a>
+                    <a href="../philosophy.html" class="tab">ФИЛОСОФИЯ</a>
+                    <a href="../legacy.html" class="tab">НАСЛЕДИЕ</a>
+                    <a href="../map.html" class="tab">КАРТА</a>
+                </div>
+                <div class="tab-indicator"></div>
+            </nav>
+        </header>
+        
+        <a href="../lineup.html" class="back-btn">← ВЕРНУТЬСЯ К СОСТАВУ</a>
+        
+        <section class="section">
+            <div class="section-header animate">
+                <div class="section-year">1965 – Н.В.</div>
+                <h1 class="section-title">
+                    <span class="title-line">ЕВГЕНИЙ</span>
+                    <span class="title-line">ЛИЩЕНКО · МАХНО</span>
+                </h1>
+            </div>
+            
+            <div class="grid-2">
+                <div class="card animate" data-depth="0.1">
+                    <div class="card-label">ИМЯ</div>
+                    <div class="card-value">ЕВГЕНИЙ ЛИЩЕНКО</div>
+                    <div class="card-desc">Родился в 1965 году. Российский рок-музыкант, бас-гитарист. Известен под псевдонимом «Махно» — в честь легендарного анархиста Нестора Махно.</div>
+                </div>
+                <div class="card animate" data-depth="0.15">
+                    <div class="card-label">РОЛЬ В ГРУППЕ</div>
+                    <div class="card-value">БАС-ГИТАРА</div>
+                    <div class="card-desc">Бас-гитарист в поздних составах «Гражданской Обороны». Его плотный, уверенный бас стал фундаментом звучания группы в 1990–2000-х годах.</div>
+                </div>
+            </div>
+            
+            <div class="card animate" style="margin: 2rem 0;">
+                <div class="card-label">БИОГРАФИЯ</div>
+                <div class="card-value">ЖИЗНЬ И ТВОРЧЕСТВО</div>
+                <div class="card-desc">
+                    <p>Присоединился к «Гражданской Обороне» в 1997 году, когда Летов решил возродить группу после семилетнего перерыва. Его появление совпало с записью альбома «Солнцеворот».</p>
+                    <p>Участвовал в записи ключевых альбомов позднего периода: «Солнцеворот» (1997), «Невыносимая лёгкость бытия» (1997), «Долгая счастливая жизнь» (2004), «Зачем снятся сны» (2007).</p>
+                    <p>Его басовые партии отличаются мелодичностью и глубиной, они создают прочную ритмическую основу для гитарных экспериментов Летова и Джеффа. Махно стал важной частью обновлённого звучания группы, более зрелого и мощного.</p>
+                    <p>После смерти Летова в 2008 году участвовал в памятных концертах и трибьют-проектах. Продолжает музыкальную деятельность.</p>
+                </div>
+            </div>
+            
+            <div class="grid-2">
+                <div class="card animate" data-depth="0.1">
+                    <div class="card-label">ПСЕВДОНИМ</div>
+                    <div class="card-value">МАХНО</div>
+                    <div class="card-desc">
+                        Прозвище получил в честь Нестора Махно — легендарного анархиста, предводителя крестьянского движения на Украине во время Гражданской войны. Выбор псевдонима отражает анархистские убеждения музыканта и общую идеологию группы.
+                    </div>
+                </div>
+                <div class="card animate" data-depth="0.15">
+                    <div class="card-label">КЛЮЧЕВЫЕ ТРЕКИ С УЧАСТИЕМ</div>
+                    <div class="card-value">ИЗБРАННОЕ</div>
+                    <ul class="track-list">
+                        <li>Солнцеворот (1997)</li>
+                        <li>Без меня (1997)</li>
+                        <li>Невыносимая лёгкость бытия (1997)</li>
+                        <li>Долгая счастливая жизнь (2004)</li>
+                        <li>Зачем снятся сны (2007)</li>
+                        <li>Реанимация (2005)</li>
+                        <li>Свобода (1997)</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="card animate" style="margin: 2rem 0;">
+                <div class="card-label">ЗНАЧЕНИЕ</div>
+                <div class="card-value">ФУНДАМЕНТ ПОЗДНЕГО ЗВУЧАНИЯ</div>
+                <div class="card-desc">
+                    Махно привнёс в звучание «Гражданской Обороны» стабильность и глубину. Его бас-гитара стала тем самым «клеем», который скрепил экспериментальные гитарные партии и ударные в единое мощное целое. Без его вклада поздние альбомы группы звучали бы совсем иначе.
+                </div>
+            </div>
+            
+            <blockquote class="quote animate">
+                <span class="quote-line">«БАС — ЭТО</span>
+                <span class="quote-line">ДУША РИТМА»</span>
+                <cite>— Евгений «Махно» Лищенко</cite>
+            </blockquote>
+        </section>
+        
+        <a href="../lineup.html" class="back-btn">← ВЕРНУТЬСЯ К СОСТАВУ</a>
+        
+        <footer class="footer">
+            <div>© ГРАЖДАНСКАЯ ОБОРОНА · ИСТОРИЯ ГРУППЫ</div>
+            <div><span>⚡</span> ДИЗАЙН-МОНУМЕНТ <span>⚡</span></div>
+            <div>ОМСК · 1984 – ∞</div>
+        </footer>
+    </main>
+    
+    <script src="../js/particles.js"></script>
+    <script src="../js/cursor.js"></script>
+    <script src="../js/audio.js"></script>
+    <script src="../js/parallax.js"></script>
+    <script src="../js/main.js"></script>
+</body>
+</html>

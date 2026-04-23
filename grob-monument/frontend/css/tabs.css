@@ -1,0 +1,95 @@
+/* ===== css/tabs.css ===== */
+/* Стили для вкладок */
+
+.tabs-container {
+    position: relative;
+    flex: 1;
+    margin: 0 2rem;
+}
+
+.tabs {
+    display: flex;
+    justify-content: center;
+    gap: 0.3rem;
+    flex-wrap: wrap;
+}
+
+.tab {
+    background: none;
+    border: 1px solid transparent;
+    padding: 0.8rem 1.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+    opacity: 0.6;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.tab:hover {
+    opacity: 1;
+    color: var(--text);
+    border-color: var(--text);
+    transform: skewX(-5deg);
+}
+
+.tab.active {
+    opacity: 1;
+    color: var(--text);
+    border-color: var(--text);
+    background: rgba(255, 255, 255, 0.03);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+.tab-indicator {
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--text);
+    transition: all 0.4s var(--ease);
+    box-shadow: 0 0 20px var(--text);
+}
+
+/* Мобильная версия */
+@media (max-width: 768px) {
+    .tabs-container {
+        margin: 1.5rem 0;
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 0.5rem;
+    }
+    
+    .tabs {
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+        width: max-content;
+        min-width: 100%;
+    }
+    
+    .tab {
+        white-space: nowrap;
+        padding: 0.6rem 1rem;
+        font-size: 0.75rem;
+    }
+    
+    .tabs-container::-webkit-scrollbar {
+        height: 2px;
+    }
+    
+    .tabs-container::-webkit-scrollbar-track {
+        background: var(--border);
+    }
+    
+    .tabs-container::-webkit-scrollbar-thumb {
+        background: var(--text);
+    }
+}

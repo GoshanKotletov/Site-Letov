@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>ГРОБ · АРКАДИЙ КЛИМКИН</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/tabs.css">
+    <link rel="stylesheet" href="../css/animations.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,900;1,300&display=swap" rel="stylesheet">
+    <style>
+        .back-btn {
+            display: inline-block;
+            margin: 2rem 0;
+            padding: 1rem 2rem;
+            border: 1px solid var(--text);
+            color: var(--text);
+            text-decoration: none;
+            font-family: var(--font-mono);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            transition: all 0.3s;
+        }
+        .back-btn:hover {
+            background: var(--text);
+            color: var(--bg);
+        }
+        .track-list {
+            list-style: none;
+            margin-top: 1rem;
+        }
+        .track-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-secondary);
+        }
+        .track-list li:before {
+            content: "⚡";
+            margin-right: 1rem;
+            color: var(--text);
+        }
+    </style>
+</head>
+<body class="dark">
+    <div class="cursor-anarchy">Ⓐ</div>
+    <div class="cursor-dot"></div>
+    <canvas id="stars-canvas"></canvas>
+    <div class="noise-overlay"></div>
+    <div class="vignette-overlay"></div>
+    <div class="scanline-overlay"></div>
+    
+    <div class="audio-control" id="audioBtn" title="ВКЛ/ВЫКЛ · АТМОСФЕРА">▶</div>
+    <div class="fullscreen-btn" id="fullscreenBtn" title="ПОЛНЫЙ ЭКРАН">⛶</div>
+    
+    <main class="layout" id="mainContent">
+        <header class="header">
+            <div class="logo">
+                <a href="../index.html" style="text-decoration: none; color: inherit;">
+                    <span class="logo-main">ГРОБ</span>
+                    <span class="logo-sub">ГРАЖДАНСКАЯ ОБОРОНА · 1984–∞</span>
+                </a>
+            </div>
+            <nav class="tabs-container">
+                <div class="tabs">
+                    <a href="../index.html" class="tab">ГЕНЕЗИС</a>
+                    <a href="../golden.html" class="tab">ЗОЛОТОЙ ВЕК</a>
+                    <a href="../psych.html" class="tab">ПСИХОДЕЛИЯ</a>
+                    <a href="../lineup.html" class="tab active">СОСТАВ</a>
+                    <a href="../discography.html" class="tab">ДИСКОГРАФИЯ</a>
+                    <a href="../philosophy.html" class="tab">ФИЛОСОФИЯ</a>
+                    <a href="../legacy.html" class="tab">НАСЛЕДИЕ</a>
+                    <a href="../map.html" class="tab">КАРТА</a>
+                </div>
+                <div class="tab-indicator"></div>
+            </nav>
+        </header>
+        
+        <a href="../lineup.html" class="back-btn">← ВЕРНУТЬСЯ К СОСТАВУ</a>
+        
+        <section class="section">
+            <div class="section-header animate">
+                <div class="section-year">1963 – Н.В.</div>
+                <h1 class="section-title">
+                    <span class="title-line">АРКАДИЙ</span>
+                    <span class="title-line">КЛИМКИН</span>
+                </h1>
+            </div>
+            
+            <div class="grid-2">
+                <div class="card animate" data-depth="0.1">
+                    <div class="card-label">ИМЯ</div>
+                    <div class="card-value">АРКАДИЙ ВИКТОРОВИЧ КЛИМКИН</div>
+                    <div class="card-desc">Родился в 1963 году в Омске. Советский и российский рок-музыкант, барабанщик. Один из ключевых участников классического состава «Гражданской Обороны».</div>
+                </div>
+                <div class="card animate" data-depth="0.15">
+                    <div class="card-label">РОЛЬ В ГРУППЕ</div>
+                    <div class="card-value">БАРАБАНЩИК · ПЕРКУССИЯ</div>
+                    <div class="card-desc">Присоединился к группе в 1987 году. Его энергичная, напористая манера игры стала визитной карточкой ритм-секции ГрОб золотого периода.</div>
+                </div>
+            </div>
+            
+            <div class="card animate" style="margin: 2rem 0;">
+                <div class="card-label">БИОГРАФИЯ</div>
+                <div class="card-value">ЖИЗНЬ И ТВОРЧЕСТВО</div>
+                <div class="card-desc">
+                    <p>До прихода в «Гражданскую Оборону» играл в различных омских группах. В 1987 году познакомился с Егором Летовым и быстро стал неотъемлемой частью коллектива.</p>
+                    <p>Участвовал в записи ключевых альбомов классического периода: «Мышеловка», «Хорошо!!», «Тоталитаризм», «Некрофилия» (все — 1987), «Всё идёт по плану» (1988), «Русское поле экспериментов» (1989).</p>
+                    <p>Его барабанные партии отличаются особой энергией и драйвом, которые идеально дополняли гитарный звук Джеффа и вокал Летова. Создал тот самый «качающий» ритм, который стал одной из отличительных черт сибирского панка.</p>
+                    <p>После распада группы в 1990 году отошёл от активной музыкальной деятельности. Живёт в Омске, иногда участвует в памятных мероприятиях, посвящённых наследию ГрОб.</p>
+                </div>
+            </div>
+            
+            <div class="grid-2">
+                <div class="card animate" data-depth="0.1">
+                    <div class="card-label">ДРУГИЕ ПРОЕКТЫ</div>
+                    <div class="card-value">СТУДИЙНАЯ РАБОТА</div>
+                    <div class="card-desc">
+                        Помимо игры на барабанах, помогал в организации записи альбомов, настройке аппаратуры. Участвовал в проекте «Коммунизм» как сессионный музыкант.
+                    </div>
+                </div>
+                <div class="card animate" data-depth="0.15">
+                    <div class="card-label">КЛЮЧЕВЫЕ ТРЕКИ С УЧАСТИЕМ</div>
+                    <div class="card-value">ИЗБРАННОЕ</div>
+                    <ul class="track-list">
+                        <li>Мышеловка (1987)</li>
+                        <li>Хорошо!! (1987)</li>
+                        <li>Тоталитаризм (1987)</li>
+                        <li>Всё идёт по плану (1988)</li>
+                        <li>Русское поле экспериментов (1989)</li>
+                        <li>Вечная весна (1989)</li>
+                        <li>Инструкция по выживанию (1990)</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <blockquote class="quote animate">
+                <span class="quote-line">«РИТМ — ЭТО</span>
+                <span class="quote-line">СЕРДЦЕ ПАНКА»</span>
+                <cite>— Аркадий Климкин</cite>
+            </blockquote>
+        </section>
+        
+        <a href="../lineup.html" class="back-btn">← ВЕРНУТЬСЯ К СОСТАВУ</a>
+        
+        <footer class="footer">
+            <div>© ГРАЖДАНСКАЯ ОБОРОНА · ИСТОРИЯ ГРУППЫ</div>
+            <div><span>⚡</span> ДИЗАЙН-МОНУМЕНТ <span>⚡</span></div>
+            <div>ОМСК · 1984 – ∞</div>
+        </footer>
+    </main>
+    
+    <script src="../js/particles.js"></script>
+    <script src="../js/cursor.js"></script>
+    <script src="../js/audio.js"></script>
+    <script src="../js/parallax.js"></script>
+    <script src="../js/main.js"></script>
+</body>
+</html>

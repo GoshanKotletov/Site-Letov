@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>ГРОБ · СОСТАВ</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/tabs.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,900;1,300&display=swap" rel="stylesheet">
+    <style>
+        .member-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+    </style>
+</head>
+<body class="dark">
+    <div class="cursor-anarchy">Ⓐ</div>
+    <div class="cursor-dot"></div>
+    <canvas id="stars-canvas"></canvas>
+    <div class="noise-overlay"></div>
+    <div class="vignette-overlay"></div>
+    <div class="scanline-overlay"></div>
+    
+    <div class="audio-control" id="audioBtn" title="ВКЛ/ВЫКЛ · АТМОСФЕРА">▶</div>
+    <div class="fullscreen-btn" id="fullscreenBtn" title="ПОЛНЫЙ ЭКРАН">⛶</div>
+    
+    <main class="layout" id="mainContent">
+        <header class="header">
+            <div class="logo">
+                <a href="index.html" style="text-decoration: none; color: inherit;">
+                    <span class="logo-main">ГРОБ</span>
+                    <span class="logo-sub">ГРАЖДАНСКАЯ ОБОРОНА · 1984–∞</span>
+                </a>
+            </div>
+            <nav class="tabs-container">
+                <div class="tabs">
+                    <a href="index.html" class="tab">ГЕНЕЗИС</a>
+                    <a href="golden.html" class="tab">ЗОЛОТОЙ ВЕК</a>
+                    <a href="psych.html" class="tab">ПСИХОДЕЛИЯ</a>
+                    <a href="lineup.html" class="tab active">СОСТАВ</a>
+                    <a href="discography.html" class="tab">ДИСКОГРАФИЯ</a>
+                    <a href="philosophy.html" class="tab">ФИЛОСОФИЯ</a>
+                    <a href="legacy.html" class="tab">НАСЛЕДИЕ</a>
+                    <a href="map.html" class="tab">КАРТА</a>
+                </div>
+                <div class="tab-indicator"></div>
+            </nav>
+        </header>
+        
+        <section class="section">
+            <div class="section-header animate">
+                <div class="section-year">1984–2008</div>
+                <h1 class="section-title">
+                    <span class="title-line">СОСТАВ</span>
+                    <span class="title-line">ОСНОВНЫЕ УЧАСТНИКИ</span>
+                </h1>
+            </div>
+            
+            <div class="grid-2">
+                <a href="members/letov.html" class="member-link">
+                    <div class="card animate" data-depth="0.1">
+                        <div class="card-label">ОСНОВАТЕЛЬ · ЛИДЕР</div>
+                        <div class="card-value">ЕГОР ЛЕТОВ</div>
+                        <div class="card-desc"><strong>Игорь Фёдорович Летов · 1964–2008</strong><br><br>Создатель, бессменный лидер, идеолог и автор практически всех песен. Вокал, гитара, бас, ударные. Сердце и душа «Гражданской Обороны».</div>
+                    </div>
+                </a>
+                
+                <a href="members/kuzya.html" class="member-link">
+                    <div class="card animate" data-depth="0.15">
+                        <div class="card-label">СООСНОВАТЕЛЬ</div>
+                        <div class="card-value">КОНСТАНТИН РЯБИНОВ</div>
+                        <div class="card-desc"><strong>Кузя УО · 1964–2020</strong><br><br>Сооснователь группы. Авангардное звучание, шумовые эффекты, саксофон, бэк-вокал. Участвовал в «Коммунизм», «Христосы».</div>
+                    </div>
+                </a>
+                
+                <a href="members/jeff.html" class="member-link">
+                    <div class="card animate" data-depth="0.2">
+                        <div class="card-label">ГИТАРИСТ</div>
+                        <div class="card-value">ИГОРЬ ЖЕВТУН</div>
+                        <div class="card-desc"><strong>Джефф · 1962 – н.в.</strong><br><br>Присоединился в 1988 году. Создал гитарное звучание классических альбомов. Соло-гитара, бас-гитара.</div>
+                    </div>
+                </a>
+                
+                <a href="members/klimkin.html" class="member-link">
+                    <div class="card animate" data-depth="0.12">
+                        <div class="card-label">БАРАБАНЩИК</div>
+                        <div class="card-value">АРКАДИЙ КЛИМКИН</div>
+                        <div class="card-desc"><strong>1963 – н.в.</strong><br><br>Барабанщик классического состава. Играл на альбомах 1987–1990 годов. Его манера — визитная карточка ритм-секции.</div>
+                    </div>
+                </a>
+                
+                <a href="members/yanka.html" class="member-link">
+                    <div class="card animate" data-depth="0.18">
+                        <div class="card-label">БЛИЖАЙШИЙ СОРАТНИК</div>
+                        <div class="card-value">ЯНКА ДЯГИЛЕВА</div>
+                        <div class="card-desc"><strong>Яна Станиславовна Дягилева · 1966–1991</strong><br><br>Певица, поэт, музыкант. Участвовала в записи ключевых альбомов ГрОб. Её сольное творчество — важнейшая часть сибирского панка.</div>
+                    </div>
+                </a>
+                
+                <a href="members/makhno.html" class="member-link">
+                    <div class="card animate" data-depth="0.14">
+                        <div class="card-label">БАС-ГИТАРИСТ</div>
+                        <div class="card-value">ЕВГЕНИЙ ЛИЩЕНКО</div>
+                        <div class="card-desc"><strong>Махно · 1965 – н.в.</strong><br><br>Бас-гитарист в поздних составах. Участвовал в записи «Солнцеворот», «Долгая счастливая жизнь», «Зачем снятся сны».</div>
+                    </div>
+                </a>
+            </div>
+            
+            <blockquote class="quote animate">
+                <span class="quote-line">«МЫ — СИБИРСКИЙ ПАНК</span>
+                <span class="quote-line">И ЭТО НАВСЕГДА»</span>
+                <cite>— Егор Летов</cite>
+            </blockquote>
+            
+            <div class="marquee">
+                <div class="marquee-inner">
+                    <span>✦ ЕГОР ЛЕТОВ ✦ КУЗЯ УО ✦ ДЖЕФФ ✦ ЯНКА ✦ МАХНО ✦ КЛИМКИН ✦</span>
+                </div>
+            </div>
+        </section>
+        
+        <footer class="footer">
+            <div>© ГРАЖДАНСКАЯ ОБОРОНА · ИСТОРИЯ ГРУППЫ</div>
+            <div><span>⚡</span> ДИЗАЙН-МОНУМЕНТ <span>⚡</span></div>
+            <div>ОМСК · 1984 – ∞</div>
+        </footer>
+    </main>
+    
+    <script src="js/particles.js"></script>
+    <script src="js/cursor.js"></script>
+    <script src="js/audio.js"></script>
+    <script src="js/parallax.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

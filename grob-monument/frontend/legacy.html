@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>ГРОБ · НАСЛЕДИЕ</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/tabs.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,900;1,300&display=swap" rel="stylesheet">
+</head>
+<body class="dark">
+    <div class="cursor-anarchy">Ⓐ</div>
+    <div class="cursor-dot"></div>
+    <canvas id="stars-canvas"></canvas>
+    <div class="noise-overlay"></div>
+    <div class="vignette-overlay"></div>
+    <div class="scanline-overlay"></div>
+    
+    <div class="audio-control" id="audioBtn" title="ВКЛ/ВЫКЛ · АТМОСФЕРА">▶</div>
+    <div class="fullscreen-btn" id="fullscreenBtn" title="ПОЛНЫЙ ЭКРАН">⛶</div>
+    
+    <main class="layout" id="mainContent">
+        <header class="header">
+            <div class="logo">
+                <a href="index.html" style="text-decoration: none; color: inherit;">
+                    <span class="logo-main">ГРОБ</span>
+                    <span class="logo-sub">ГРАЖДАНСКАЯ ОБОРОНА · 1984–∞</span>
+                </a>
+            </div>
+            <nav class="tabs-container">
+                <div class="tabs">
+                    <a href="map.html" class="tab">КАРТА</a>
+                    <a href="index.html" class="tab">ГЕНЕЗИС</a>
+                    <a href="golden.html" class="tab">ЗОЛОТОЙ ВЕК</a>
+                    <a href="psych.html" class="tab">ПСИХОДЕЛИЯ</a>
+                    <a href="lineup.html" class="tab">СОСТАВ</a>
+                    <a href="discography.html" class="tab">ДИСКОГРАФИЯ</a>
+                    <a href="philosophy.html" class="tab">ФИЛОСОФИЯ</a>
+                    <a href="legacy.html" class="tab active">НАСЛЕДИЕ</a>
+                </div>
+                <div class="tab-indicator"></div>
+            </nav>
+        </header>
+        
+        <section class="section">
+            <div class="section-header animate">
+                <div class="section-year">2008 – ∞</div>
+                <h1 class="section-title">
+                    <span class="title-line">НАСЛЕДИЕ</span>
+                    <span class="title-line">ВЕЧНАЯ ВЕСНА</span>
+                </h1>
+            </div>
+            
+            <div class="card animate" style="margin-bottom: 2rem;">
+                <div class="card-label">19 ФЕВРАЛЯ 2008</div>
+                <div class="card-value">СМЕРТЬ ЕГОРА ЛЕТОВА</div>
+                <div class="card-desc">Егор Летов умер во сне в своей квартире в Омске. Причина смерти — острая сердечная недостаточность. Ему было 43 года. Смерть наступила около 16:00 по местному времени. Прощание прошло 21 февраля в Омске, похороны — на Старо-Восточном кладбище. Тысячи людей со всей страны приехали проститься с музыкантом.</div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card animate">
+                    <div class="stat-num">50+</div>
+                    <div class="stat-label">АЛЬБОМОВ</div>
+                </div>
+                <div class="stat-card animate">
+                    <div class="stat-num">300+</div>
+                    <div class="stat-label">ПЕСЕН</div>
+                </div>
+                <div class="stat-card animate">
+                    <div class="stat-num">24</div>
+                    <div class="stat-label">ГОДА ТВОРЧЕСТВА</div>
+                </div>
+                <div class="stat-card animate">
+                    <div class="stat-num">∞</div>
+                    <div class="stat-label">ВЛИЯНИЕ</div>
+                </div>
+            </div>
+            
+            <div class="grid-2" style="margin-top: 2rem;">
+                <div class="card animate" data-depth="0.1">
+                    <div class="card-label">ВЛИЯНИЕ НА МУЗЫКУ</div>
+                    <div class="card-value">НОВАЯ ВОЛНА</div>
+                    <div class="card-desc">«Гражданская Оборона» создала уникальный музыкальный язык, который повлиял на сотни групп. Сибирский панк стал самостоятельным явлением, породившим множество последователей. Песни Летова перепевают музыканты самых разных жанров — от панка до академической музыки.</div>
+                </div>
+                <div class="card animate" data-depth="0.15">
+                    <div class="card-label">ВЛИЯНИЕ НА КУЛЬТУРУ</div>
+                    <div class="card-value">ГОЛОС ПОКОЛЕНИЯ</div>
+                    <div class="card-desc">Летов стал голосом потерянного поколения эпохи распада СССР. Его тексты цитируют, изучают в университетах, анализируют литературоведы. Философия Летова — анархизм, экзистенциализм, русский космизм — продолжает вдохновлять мыслителей и активистов.</div>
+                </div>
+            </div>
+            
+            <div class="legacy-text card animate">
+                <p>После смерти Летова интерес к его творчеству только вырос. Альбомы переиздаются на виниле, выходят книги воспоминаний, снимаются документальные фильмы. В Омске установлен памятник, проводятся ежегодные фестивали памяти.</p>
+                <p>«Гражданская Оборона» остаётся одним из самых важных и влиятельных явлений в русской культуре конца XX — начала XXI века. Песни Летова продолжают жить, вдохновлять и пробуждать новые поколения слушателей.</p>
+                <p>Как говорил сам Егор: <strong>«Смерти нет, есть только переход в другое состояние»</strong>.</p>
+            </div>
+            
+            <div class="finale">
+                <div class="finale-line1">ВЕЧНАЯ</div>
+                <div class="finale-line2">весна</div>
+            </div>
+            
+            <blockquote class="quote animate" style="margin-top: 2rem;">
+                <span class="quote-line">«ВЕЧНАЯ ВЕСНА</span>
+                <span class="quote-line">В ОДИНОЧНОЙ КАМЕРЕ»</span>
+                <cite>— Егор Летов, 1989</cite>
+            </blockquote>
+            
+            <div class="marquee">
+                <div class="marquee-inner">
+                    <span>✦ 19.02.2008 ✦ ЕГОР ЛЕТОВ УШЁЛ В ВЕЧНОСТЬ ✦ НАСЛЕДИЕ ЖИВЁТ ✦ ВЕЧНАЯ ВЕСНА ✦</span>
+                </div>
+            </div>
+        </section>
+        
+        <footer class="footer">
+            <div>© ГРАЖДАНСКАЯ ОБОРОНА · ИСТОРИЯ ГРУППЫ</div>
+            <div><span>⚡</span> ДИЗАЙН-МОНУМЕНТ <span>⚡</span></div>
+            <div>ОМСК · 1984 – ∞</div>
+        </footer>
+    </main>
+    
+    <script src="js/particles.js"></script>
+    <script src="js/cursor.js"></script>
+    <script src="js/audio.js"></script>
+    <script src="js/parallax.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

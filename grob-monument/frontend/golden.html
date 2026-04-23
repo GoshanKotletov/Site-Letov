@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>ГРОБ · ЗОЛОТОЙ ВЕК</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/tabs.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,900;1,300&display=swap" rel="stylesheet">
+</head>
+<body class="dark">
+    <div class="cursor-anarchy">Ⓐ</div>
+    <div class="cursor-dot"></div>
+    <canvas id="stars-canvas"></canvas>
+    <div class="noise-overlay"></div>
+    <div class="vignette-overlay"></div>
+    <div class="scanline-overlay"></div>
+    
+    <div class="audio-control" id="audioBtn" title="ВКЛ/ВЫКЛ · АТМОСФЕРА">▶</div>
+    <div class="fullscreen-btn" id="fullscreenBtn" title="ПОЛНЫЙ ЭКРАН">⛶</div>
+    
+    <main class="layout" id="mainContent">
+        <header class="header">
+            <div class="logo">
+                <a href="index.html" style="text-decoration: none; color: inherit;">
+                    <span class="logo-main">ГРОБ</span>
+                    <span class="logo-sub">ГРАЖДАНСКАЯ ОБОРОНА · 1984–∞</span>
+                </a>
+            </div>
+            <nav class="tabs-container">
+                <div class="tabs">
+                    <a href="map.html" class="tab">КАРТА</a>
+                    <a href="index.html" class="tab">ГЕНЕЗИС</a>
+                    <a href="golden.html" class="tab active">ЗОЛОТОЙ ВЕК</a>
+                    <a href="psych.html" class="tab">ПСИХОДЕЛИЯ</a>
+                    <a href="lineup.html" class="tab">СОСТАВ</a>
+                    <a href="discography.html" class="tab">ДИСКОГРАФИЯ</a>
+                    <a href="philosophy.html" class="tab">ФИЛОСОФИЯ</a>
+                    <a href="legacy.html" class="tab">НАСЛЕДИЕ</a>
+                </div>
+                <div class="tab-indicator"></div>
+            </nav>
+        </header>
+        
+        <section class="section">
+            <div class="section-header animate">
+                <div class="section-year">1987–1990</div>
+                <h1 class="section-title">
+                    <span class="title-line">ЗОЛОТОЙ ВЕК</span>
+                    <span class="title-line">РУССКОЕ ПОЛЕ ЭКСПЕРИМЕНТОВ</span>
+                </h1>
+            </div>
+            
+            <div class="grid-2">
+                <div class="card animate" data-depth="0.1">
+                    <div class="card-label">/01 МЫШЕЛОВКА</div>
+                    <div class="card-value">1987 · НАЧАЛО ЭРЫ</div>
+                    <div class="card-desc">Первый альбом классического периода. Звук становится плотнее и агрессивнее. В записи участвует расширенный состав: Кузя УО, Джефф, Аркадий Климкин. Песни «Мышеловка», «Следы на снегу», «Новая правда» становятся гимнами сибирского панка.</div>
+                </div>
+                <div class="card animate" data-depth="0.15">
+                    <div class="card-label">/02 ХОРОШО!!</div>
+                    <div class="card-value">1987 · ЭНЕРГЕТИЧЕСКИЙ ВЗРЫВ</div>
+                    <div class="card-desc">Самый энергичный и быстрый альбом группы. Короткие, яростные песни, каждая — удар под дых системе. «Хорошо!!», «Красный смех», «Дезертир» — манифест тотального несогласия. Альбом записан за несколько дней в состоянии творческого экстаза.</div>
+                </div>
+                <div class="card animate" data-depth="0.2">
+                    <div class="card-label">/03 ТОТАЛИТАРИЗМ</div>
+                    <div class="card-value">1987 · КОНЦЕПТУАЛЬНЫЙ АЛЬБОМ</div>
+                    <div class="card-desc">Мрачное, давящее звучание. Исследование природы власти и подчинения. Песни «Тоталитаризм», «Винтовка — это праздник», «Лоботомия» рисуют картину общества, раздавленного государственной машиной. Один из самых бескомпромиссных альбомов в истории русского рока.</div>
+                </div>
+                <div class="card animate" data-depth="0.12">
+                    <div class="card-label">/04 НЕКРОФИЛИЯ</div>
+                    <div class="card-value">1987 · СМЕРТЬ И ТЛЕН</div>
+                    <div class="card-desc">Завершение тетралогии 1987 года. Альбом о смерти во всех её проявлениях — физической, духовной, социальной. Звук становится ещё более грязным и депрессивным. «Некрофилия», «Он увидел солнце», «Второй эшелон» — погружение в бездну.</div>
+                </div>
+                <div class="card animate" data-depth="0.18">
+                    <div class="card-label">/05 ВСЁ ИДЁТ ПО ПЛАНУ</div>
+                    <div class="card-value">1988 · КУЛЬТОВЫЙ АЛЬБОМ</div>
+                    <div class="card-desc">Альбом, сделавший группу известной далеко за пределами андеграунда. Заглавная песня становится народным гимном эпохи перестройки. Ироничный взгляд на советскую действительность, смешанный с экзистенциальным ужасом. «Всё идёт по плану», «Так закалялась сталь», «Боевой стимул».</div>
+                </div>
+                <div class="card animate" data-depth="0.14">
+                    <div class="card-label">/06 РУССКОЕ ПОЛЕ ЭКСПЕРИМЕНТОВ</div>
+                    <div class="card-value">1989 · ВЕРШИНА</div>
+                    <div class="card-desc">Magnum opus «Гражданской Обороны». Абсолютная вершина творчества. «Русское поле экспериментов», «Вечная весна», «Как сметана», «Про дурачка» — песни, определившие сознание целого поколения. Альбом сочетает панк-энергию, философскую глубину и музыкальные эксперименты.</div>
+                </div>
+            </div>
+            
+            <div class="timeline-container animate">
+                <div class="timeline-track"></div>
+                <div class="timeline-node" style="left: 2%;" data-year="1987" data-album="Мышеловка"></div>
+                <div class="timeline-node" style="left: 16%;" data-year="1987" data-album="Хорошо!!"></div>
+                <div class="timeline-node" style="left: 30%;" data-year="1987" data-album="Тоталитаризм"></div>
+                <div class="timeline-node" style="left: 44%;" data-year="1987" data-album="Некрофилия"></div>
+                <div class="timeline-node" style="left: 58%;" data-year="1988" data-album="Всё идёт по плану"></div>
+                <div class="timeline-node" style="left: 72%;" data-year="1989" data-album="Русское поле"></div>
+                <div class="timeline-node" style="left: 86%;" data-year="1990" data-album="Инструкция"></div>
+            </div>
+            
+            <div class="card animate" style="margin-top: 4rem;">
+                <div class="card-label">/07 ИНСТРУКЦИЯ ПО ВЫЖИВАНИЮ</div>
+                <div class="card-value">1990 · ФИНАЛ КЛАССИКИ</div>
+                <div class="card-desc">Последний альбом золотого периода. Записан в преддверии распада СССР. Звучание становится более мрачным и безысходным. «Инструкция по выживанию», «Непрерывный суицид», «Вершки и корешки» — прощание с эпохой. После этого альбома Летов распускает группу и уходит в психоделические эксперименты.</div>
+            </div>
+            
+            <blockquote class="quote animate">
+                <span class="quote-line">«ВЕЧНАЯ ВЕСНА</span>
+                <span class="quote-line">В ОДИНОЧНОЙ КАМЕРЕ»</span>
+                <cite>— Русское поле экспериментов, 1989</cite>
+            </blockquote>
+            
+            <div class="marquee">
+                <div class="marquee-inner">
+                    <span>✦ 1987: МЫШЕЛОВКА ✦ ХОРОШО!! ✦ ТОТАЛИТАРИЗМ ✦ НЕКРОФИЛИЯ ✦</span>
+                    <span>✦ 1988: ВСЁ ИДЁТ ПО ПЛАНУ ✦</span>
+                    <span>✦ 1989: РУССКОЕ ПОЛЕ ЭКСПЕРИМЕНТОВ ✦</span>
+                    <span>✦ 1990: ИНСТРУКЦИЯ ПО ВЫЖИВАНИЮ ✦</span>
+                </div>
+            </div>
+        </section>
+        
+        <footer class="footer">
+            <div>© ГРАЖДАНСКАЯ ОБОРОНА · ИСТОРИЯ ГРУППЫ</div>
+            <div><span>⚡</span> ДИЗАЙН-МОНУМЕНТ <span>⚡</span></div>
+            <div>ОМСК · 1984 – ∞</div>
+        </footer>
+    </main>
+    
+    <script src="js/particles.js"></script>
+    <script src="js/cursor.js"></script>
+    <script src="js/audio.js"></script>
+    <script src="js/parallax.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

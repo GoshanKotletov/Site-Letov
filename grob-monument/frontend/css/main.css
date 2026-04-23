@@ -1,0 +1,751 @@
+/* ===== css/main.css ===== */
+/* ГРАЖДАНСКАЯ ОБОРОНА · МОНУМЕНТ */
+/* Основные стили, чёрно-белая гамма */
+
+:root {
+    --bg: #000000;
+    --bg-secondary: #0a0a0a;
+    --text: #ffffff;
+    --text-secondary: #cccccc;
+    --text-muted: #888888;
+    --accent: #ffffff;
+    --border: #333333;
+    --border-light: #222222;
+    --font-mono: 'Space Mono', 'Courier New', monospace;
+    --font-serif: 'Playfair Display', 'Times New Roman', serif;
+    --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --spacing: 2rem;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-mono);
+    overflow-x: hidden;
+    min-height: 100vh;
+    cursor: none;
+}
+
+::selection {
+    background: var(--text);
+    color: var(--bg);
+}
+
+/* ===== КОСМИЧЕСКОЕ НЕБО ===== */
+#stars-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+    display: block;
+}
+
+/* ===== ОВЕРЛЕИ ===== */
+.noise-overlay {
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJmIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iLjc1IiBudW1PY3RhdmVzPSIzIiAvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcj0idXJsKCNmKSIgb3BhY2l0eT0iMC4xNSIgLz48L3N2Zz4=');
+    opacity: 0.08;
+    pointer-events: none;
+    z-index: 2;
+    animation: grain 1s steps(2) infinite;
+}
+
+@keyframes grain {
+    0%, 100% { transform: translate(0, 0); }
+    10% { transform: translate(-5%, -10%); }
+    30% { transform: translate(3%, -15%); }
+    50% { transform: translate(12%, 9%); }
+    70% { transform: translate(-8%, 7%); }
+    90% { transform: translate(5%, -12%); }
+}
+
+.vignette-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, transparent 30%, rgba(0,0,0,0.85) 100%);
+    pointer-events: none;
+    z-index: 3;
+}
+
+.scanline-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(0deg, rgba(0,0,0,0.15) 0px, rgba(255,255,255,0.02) 2px, transparent 3px);
+    opacity: 0.3;
+    pointer-events: none;
+    z-index: 4;
+}
+
+/* ===== КУРСОР (АНАРХИЯ) ===== */
+.cursor-anarchy {
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    font-weight: bold;
+    color: var(--text);
+    pointer-events: none;
+    z-index: 10000;
+    transform: translate(-50%, -50%);
+    text-shadow: 0 0 20px rgba(255,255,255,0.5);
+    transition: transform 0.1s;
+    font-family: 'Arial', sans-serif;
+}
+
+.cursor-dot {
+    position: fixed;
+    width: 6px;
+    height: 6px;
+    background: var(--text);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 10001;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 20px var(--text);
+}
+
+.cursor-anarchy.active {
+    transform: translate(-50%, -50%) scale(1.5);
+    text-shadow: 0 0 30px var(--text);
+}
+
+/* ===== ОСНОВНОЙ КОНТЕЙНЕР ===== */
+.layout {
+    position: relative;
+    z-index: 10;
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 2rem 4rem;
+    opacity: 1;
+}
+
+/* ===== ХЕДЕР ===== */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 0;
+    margin-bottom: 4rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.logo {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo a {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-main {
+    font-size: 2.5rem;
+    font-weight: 900;
+    letter-spacing: 0.3em;
+    color: var(--text);
+    line-height: 1;
+    font-family: var(--font-serif);
+    text-shadow: 0 0 30px rgba(255,255,255,0.3);
+}
+
+.logo-sub {
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    letter-spacing: 0.4em;
+    margin-top: 0.5rem;
+}
+
+/* ===== СЕКЦИИ ===== */
+.section {
+    margin-bottom: 6rem;
+}
+
+.section-header {
+    margin-bottom: 4rem;
+}
+
+.section-year {
+    font-size: 7rem;
+    font-weight: 900;
+    line-height: 1;
+    color: transparent;
+    -webkit-text-stroke: 2px var(--text);
+    opacity: 0.15;
+    margin-bottom: -2rem;
+    font-family: var(--font-serif);
+}
+
+.section-title {
+    font-size: 3.5rem;
+    font-weight: 300;
+    font-style: italic;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--text);
+    line-height: 1.3;
+}
+
+.title-line {
+    display: block;
+}
+
+.title-line:last-child {
+    color: var(--text-secondary);
+}
+
+/* ===== СЕТКИ ===== */
+.grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin: 4rem 0;
+}
+
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin: 4rem 0;
+}
+
+/* ===== КАРТОЧКИ ===== */
+.card {
+    padding: 2rem;
+    border-left: 4px solid var(--text);
+    background: rgba(15, 15, 15, 0.9);
+    backdrop-filter: blur(10px);
+    transition: all 0.4s var(--ease);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+    transition: left 0.6s;
+}
+
+.card:hover::before {
+    left: 100%;
+}
+
+.card:hover {
+    transform: translateX(15px) translateY(-5px);
+    background: rgba(25, 25, 25, 0.95);
+    box-shadow: -10px 20px 40px rgba(0,0,0,0.7), 0 0 0 1px var(--text) inset;
+}
+
+.card-label {
+    font-family: var(--font-serif);
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    letter-spacing: 0.15em;
+    opacity: 0.8;
+}
+
+.card-value {
+    font-size: 2rem;
+    font-weight: 900;
+    line-height: 1.2;
+    color: var(--text);
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    font-family: var(--font-serif);
+}
+
+.card-desc {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    font-weight: 300;
+}
+
+.card-desc strong {
+    color: var(--text);
+    font-weight: 700;
+}
+
+/* ===== ЦИТАТЫ ===== */
+.quote {
+    margin: 6rem 0;
+    padding: 4rem 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    text-align: center;
+}
+
+.quote-line {
+    display: block;
+    font-size: 5rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: transparent;
+    -webkit-text-stroke: 1.5px var(--text);
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    font-style: italic;
+    font-family: var(--font-serif);
+}
+
+.quote cite {
+    display: block;
+    margin-top: 2rem;
+    font-size: 1rem;
+    color: var(--text-secondary);
+    font-style: normal;
+    letter-spacing: 0.3em;
+}
+
+/* ===== БЕГУЩАЯ СТРОКА ===== */
+.marquee {
+    background: rgba(15, 15, 15, 0.9);
+    padding: 1.5rem 0;
+    margin: 4rem -4rem;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+    overflow: hidden;
+    backdrop-filter: blur(5px);
+}
+
+.marquee-inner {
+    display: inline-block;
+    animation: marquee 30s linear infinite;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    letter-spacing: 0.3em;
+    color: var(--text);
+}
+
+.marquee-inner span {
+    margin-right: 3rem;
+}
+
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* ===== ТАЙМЛАЙН ===== */
+.timeline-container {
+    position: relative;
+    height: 150px;
+    margin: 6rem 0;
+}
+
+.timeline-track {
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--text), var(--text), transparent);
+    top: 50%;
+}
+
+.timeline-node {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background: var(--bg);
+    border: 2px solid var(--text);
+    border-radius: 50%;
+    top: -7px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.timeline-node:hover {
+    transform: scale(1.8);
+    background: var(--text);
+    box-shadow: 0 0 30px var(--text);
+}
+
+.timeline-node::after {
+    content: attr(data-year);
+    position: absolute;
+    top: -30px;
+    left: -20px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: var(--text);
+    white-space: nowrap;
+}
+
+.timeline-node::before {
+    content: attr(data-album);
+    position: absolute;
+    bottom: -25px;
+    left: -30px;
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.timeline-node:hover::before {
+    opacity: 1;
+}
+
+/* ===== ДИСКОГРАФИЯ ===== */
+.discography-list {
+    margin: 4rem 0;
+}
+
+.album-row {
+    display: grid;
+    grid-template-columns: 80px 1fr 150px;
+    padding: 1.2rem 2rem;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+}
+
+.album-row span:first-child {
+    font-weight: 700;
+    color: var(--text);
+}
+
+.album-row span:last-child {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    text-align: right;
+}
+
+/* ===== СТАТИСТИКА ===== */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    margin: 4rem 0;
+}
+
+.stat-card {
+    padding: 3rem 1.5rem;
+    text-align: center;
+    border: 1px solid var(--border);
+    background: rgba(15, 15, 15, 0.8);
+    backdrop-filter: blur(5px);
+    transition: all 0.3s;
+}
+
+.stat-card:hover {
+    border-color: var(--text);
+    transform: scale(1.02);
+}
+
+.stat-num {
+    font-size: 4rem;
+    font-weight: 900;
+    color: transparent;
+    -webkit-text-stroke: 2px var(--text);
+    line-height: 1;
+    font-family: var(--font-serif);
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    letter-spacing: 0.2em;
+    margin-top: 1rem;
+}
+
+/* ===== НАСЛЕДИЕ ===== */
+.legacy-text {
+    max-width: 800px;
+    margin: 4rem auto;
+    text-align: center;
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    padding: 3rem;
+}
+
+.legacy-text p {
+    margin-bottom: 1.5rem;
+}
+
+.finale {
+    text-align: right;
+    margin-top: 6rem;
+    padding-top: 4rem;
+    border-top: 1px solid var(--border);
+}
+
+.finale-line1 {
+    font-size: 12vw;
+    font-weight: 900;
+    color: transparent;
+    -webkit-text-stroke: 3px var(--text);
+    line-height: 0.8;
+    font-family: var(--font-serif);
+}
+
+.finale-line2 {
+    font-size: 6vw;
+    font-weight: 100;
+    font-style: italic;
+    color: var(--text);
+}
+
+/* ===== КНОПКИ ===== */
+.audio-control, .fullscreen-btn {
+    position: fixed;
+    right: 2rem;
+    width: 50px;
+    height: 50px;
+    border: 1px solid var(--text);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    color: var(--text);
+    font-size: 1.5rem;
+    z-index: 1000;
+    transition: all 0.3s;
+}
+
+.audio-control {
+    bottom: 2rem;
+}
+
+.fullscreen-btn {
+    bottom: 6rem;
+}
+
+.audio-control:hover, .fullscreen-btn:hover {
+    background: var(--text);
+    color: var(--bg);
+    transform: scale(1.1);
+}
+
+.audio-control.playing {
+    animation: glow 2s infinite;
+}
+
+@keyframes glow {
+    0%, 100% { box-shadow: 0 0 10px rgba(255,255,255,0.3); }
+    50% { box-shadow: 0 0 30px rgba(255,255,255,0.6); }
+}
+
+/* ===== ПРЕЛОАДЕР ===== */
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg);
+    z-index: 100000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 1s var(--ease);
+}
+
+.preloader.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.preloader-content {
+    text-align: center;
+}
+
+.preloader-logo {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+}
+
+.preloader-letter {
+    font-size: 6rem;
+    font-weight: 900;
+    color: transparent;
+    -webkit-text-stroke: 2px var(--text);
+    animation: letterPulse 2s infinite;
+    opacity: 0;
+    font-family: var(--font-serif);
+}
+
+.preloader-letter:nth-child(1) { animation-delay: 0s; }
+.preloader-letter:nth-child(2) { animation-delay: 0.15s; }
+.preloader-letter:nth-child(3) { animation-delay: 0.3s; }
+.preloader-letter:nth-child(4) { animation-delay: 0.45s; }
+
+@keyframes letterPulse {
+    0%, 100% { opacity: 0.2; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.1); text-shadow: 0 0 30px var(--text); }
+}
+
+.preloader-text {
+    font-size: 1.2rem;
+    letter-spacing: 0.5em;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+}
+
+.preloader-progress-container {
+    width: 350px;
+    margin: 0 auto;
+}
+
+.preloader-progress {
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+    font-family: var(--font-serif);
+}
+
+.preloader-bar {
+    height: 3px;
+    background: var(--border);
+    overflow: hidden;
+}
+
+.preloader-bar-fill {
+    width: 0%;
+    height: 100%;
+    background: var(--text);
+    box-shadow: 0 0 20px var(--text);
+}
+
+.preloader-quote {
+    margin-top: 2rem;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}
+
+/* ===== ФУТЕР ===== */
+.footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 3rem 0;
+    margin-top: 6rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+}
+
+.footer span {
+    color: var(--text);
+    margin: 0 1rem;
+}
+
+/* ===== АНИМАЦИИ ===== */
+.animate {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+}
+
+.animate.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ===== АДАПТИВ ===== */
+@media (max-width: 1200px) {
+    .layout { padding: 1.5rem 2rem; }
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .section-title { font-size: 2.5rem; }
+    .quote-line { font-size: 3.5rem; }
+    .section-year { font-size: 5rem; }
+}
+
+@media (max-width: 768px) {
+    .header { flex-wrap: wrap; }
+    .tabs-container { margin: 1.5rem 0; width: 100%; overflow-x: auto; }
+    .section-year { font-size: 3.5rem; }
+    .section-title { font-size: 1.8rem; letter-spacing: 0.1em; }
+    .quote-line { font-size: 2.5rem; }
+    .stats-grid { grid-template-columns: 1fr; }
+    .cursor-anarchy, .cursor-dot { display: none; }
+    body { cursor: auto; }
+    .marquee { margin: 4rem -2rem; }
+    .album-row { grid-template-columns: 60px 1fr; }
+    .album-row span:last-child { display: none; }
+    .footer { flex-direction: column; text-align: center; gap: 1rem; }
+    .card-value { font-size: 1.5rem; }
+}
+/* ===== СТИЛИ ДЛЯ АРТЕФАКТОВ ===== */
+.artifact-image {
+    filter: grayscale(100%) contrast(1.4) brightness(0.8);
+    mix-blend-mode: luminosity;
+    border-left: 6px solid var(--accent);
+    opacity: 0.85;
+    transition: all 0.4s var(--ease);
+    width: 100%;
+    max-width: 600px;
+    display: block;
+}
+
+.artifact-image:hover {
+    filter: grayscale(100%) contrast(1.1) brightness(1);
+    opacity: 1;
+}
+
+.artifact-caption {
+    font-family: var(--font-mono);
+    color: var(--text-secondary);
+    margin-top: 1rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+}
+
+.artifact-caption span {
+    color: var(--accent);
+    margin-right: 0.5rem;
+}
+
+.artifact-container {
+    margin: 4rem 0;
+}

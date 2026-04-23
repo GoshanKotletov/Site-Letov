@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>ГРОБ · ЕГОР ЛЕТОВ</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/tabs.css">
+    <link rel="stylesheet" href="../css/animations.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,900;1,300&display=swap" rel="stylesheet">
+    <style>
+        .back-btn {
+            display: inline-block;
+            margin: 2rem 0;
+            padding: 1rem 2rem;
+            border: 1px solid var(--text);
+            color: var(--text);
+            text-decoration: none;
+            font-family: var(--font-mono);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            transition: all 0.3s;
+        }
+        .back-btn:hover {
+            background: var(--text);
+            color: var(--bg);
+        }
+        .track-list {
+            list-style: none;
+            margin-top: 1rem;
+        }
+        .track-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-secondary);
+        }
+        .track-list li:before {
+            content: "⚡";
+            margin-right: 1rem;
+            color: var(--text);
+        }
+    </style>
+</head>
+<body class="dark">
+    <div class="cursor-anarchy">Ⓐ</div>
+    <div class="cursor-dot"></div>
+    <canvas id="stars-canvas"></canvas>
+    <div class="noise-overlay"></div>
+    <div class="vignette-overlay"></div>
+    <div class="scanline-overlay"></div>
+    
+    <div class="audio-control" id="audioBtn" title="ВКЛ/ВЫКЛ · АТМОСФЕРА">▶</div>
+    <div class="fullscreen-btn" id="fullscreenBtn" title="ПОЛНЫЙ ЭКРАН">⛶</div>
+    
+    <main class="layout" id="mainContent">
+        <header class="header">
+            <div class="logo">
+                <a href="../index.html" style="text-decoration: none; color: inherit;">
+                    <span class="logo-main">ГРОБ</span>
+                    <span class="logo-sub">ГРАЖДАНСКАЯ ОБОРОНА · 1984–∞</span>
+                </a>
+            </div>
+            <nav class="tabs-container">
+                <div class="tabs">
+                    <a href="../index.html" class="tab">ГЕНЕЗИС</a>
+                    <a href="../golden.html" class="tab">ЗОЛОТОЙ ВЕК</a>
+                    <a href="../psych.html" class="tab">ПСИХОДЕЛИЯ</a>
+                    <a href="../lineup.html" class="tab active">СОСТАВ</a>
+                    <a href="../discography.html" class="tab">ДИСКОГРАФИЯ</a>
+                    <a href="../philosophy.html" class="tab">ФИЛОСОФИЯ</a>
+                    <a href="../legacy.html" class="tab">НАСЛЕДИЕ</a>
+                    <a href="../map.html" class="tab">КАРТА</a>
+                </div>
+                <div class="tab-indicator"></div>
+            </nav>
+        </header>
+        
+        <a href="../lineup.html" class="back-btn">← ВЕРНУТЬСЯ К СОСТАВУ</a>
+        
+        <section class="section">
+            <div class="section-header animate">
+                <div class="section-year">1964–2008</div>
+                <h1 class="section-title">
+                    <span class="title-line">ЕГОР</span>
+                    <span class="title-line">ЛЕТОВ</span>
+                </h1>
+            </div>
+            
+            <div class="grid-2">
+                <div class="card animate" data-depth="0.1">
+                    <div class="card-label">ИМЯ ПРИ РОЖДЕНИИ</div>
+                    <div class="card-value">ИГОРЬ ФЁДОРОВИЧ ЛЕТОВ</div>
+                    <div class="card-desc">Родился 10 сентября 1964 года в Омске. Младший брат известного саксофониста Сергея Летова. С детства увлекался музыкой, рисованием, литературой. Самостоятельно освоил гитару, бас-гитару, ударные.</div>
+                </div>
+                <div class="card animate" data-depth="0.15">
+                    <div class="card-label">РОЛЬ В ГРУППЕ</div>
+                    <div class="card-value">ОСНОВАТЕЛЬ · ЛИДЕР · ИДЕОЛОГ</div>
+                    <div class="card-desc">Создатель и бессменный лидер «Гражданской Обороны». Автор практически всех песен. Вокал, гитара, бас-гитара, ударные на ранних записях. Продюсер, звукорежиссёр, художник-оформитель альбомов.</div>
+                </div>
+            </div>
+            
+            <div class="card animate" style="margin: 2rem 0;">
+                <div class="card-label">БИОГРАФИЯ</div>
+                <div class="card-value">ЖИЗНЬ И ТВОРЧЕСТВО</div>
+                <div class="card-desc">
+                    <p>В 1982 году вместе с Андреем Бабенко создал проект «Посев» — предтечу «Гражданской Обороны». 8 ноября 1984 года основал группу «Гражданская Оборона». В 1985–1986 годах записал первые магнитоальбомы.</p>
+                    <p>В 1987–1990 годах — пик творческой активности: записаны «Мышеловка», «Хорошо!!», «Тоталитаризм», «Некрофилия», «Всё идёт по плану», «Русское поле экспериментов». В этот период постоянно подвергался преследованиям со стороны КГБ, был помещён в психиатрическую больницу.</p>
+                    <p>В 1990–1993 годах — проект «Егор и Опизденевшие», альбомы «Прыг-скок» и «Сто лет одиночества». В 1997 году возродил «Гражданскую Оборону», записал альбомы «Солнцеворот», «Невыносимая лёгкость бытия». В 2000-х — «Долгая счастливая жизнь», «Зачем снятся сны».</p>
+                    <p>Умер 19 февраля 2008 года в Омске от острой сердечной недостаточности. Похоронен на Старо-Восточном кладбище.</p>
+                </div>
+            </div>
+            
+            <div class="grid-2">
+                <div class="card animate" data-depth="0.1">
+                    <div class="card-label">ДРУГИЕ ПРОЕКТЫ</div>
+                    <div class="card-value">ПОСЕВ · КОММУНИЗМ · ЕГОР И ОПИЗДЕНЕВШИЕ</div>
+                    <div class="card-desc">
+                        <strong>Посев</strong> (1982–1984) — предтеча ГрОб.<br>
+                        <strong>Коммунизм</strong> (1989–1990) — совместно с Кузей УО и Манагером.<br>
+                        <strong>Егор и Опизденевшие</strong> (1990–1993) — психоделический проект.<br>
+                        <strong>Христосы</strong> (1993) — акустическая психоделия.<br>
+                        <strong>Цыганята и Я с Ильича</strong> — экспериментальный коллаж.
+                    </div>
+                </div>
+                <div class="card animate" data-depth="0.15">
+                    <div class="card-label">КЛЮЧЕВЫЕ ТРЕКИ</div>
+                    <div class="card-value">ИЗБРАННОЕ</div>
+                    <ul class="track-list">
+                        <li>Всё идёт по плану (1988)</li>
+                        <li>Русское поле экспериментов (1989)</li>
+                        <li>Вечная весна (1989)</li>
+                        <li>Про дурачка (1989)</li>
+                        <li>Прыг-скок (1990)</li>
+                        <li>Сто лет одиночества (1993)</li>
+                        <li>Солнцеворот (1997)</li>
+                        <li>Долгая счастливая жизнь (2004)</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <blockquote class="quote animate">
+                <span class="quote-line">«Я ВСЕГДА</span>
+                <span class="quote-line">БУДУ ПРОТИВ»</span>
+                <cite>— Егор Летов</cite>
+            </blockquote>
+        </section>
+        
+        <a href="../lineup.html" class="back-btn">← ВЕРНУТЬСЯ К СОСТАВУ</a>
+        
+        <footer class="footer">
+            <div>© ГРАЖДАНСКАЯ ОБОРОНА · ИСТОРИЯ ГРУППЫ</div>
+            <div><span>⚡</span> ДИЗАЙН-МОНУМЕНТ <span>⚡</span></div>
+            <div>ОМСК · 1984 – ∞</div>
+        </footer>
+    </main>
+    
+    <script src="../js/particles.js"></script>
+    <script src="../js/cursor.js"></script>
+    <script src="../js/audio.js"></script>
+    <script src="../js/parallax.js"></script>
+    <script src="../js/main.js"></script>
+</body>
+</html>

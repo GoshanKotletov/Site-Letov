@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>ГРОБ · ДИСКОГРАФИЯ</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/tabs.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,900;1,300&display=swap" rel="stylesheet">
+</head>
+<body class="dark">
+    <div class="cursor-anarchy">Ⓐ</div>
+    <div class="cursor-dot"></div>
+    <canvas id="stars-canvas"></canvas>
+    <div class="noise-overlay"></div>
+    <div class="vignette-overlay"></div>
+    <div class="scanline-overlay"></div>
+    
+    <div class="audio-control" id="audioBtn" title="ВКЛ/ВЫКЛ · АТМОСФЕРА">▶</div>
+    <div class="fullscreen-btn" id="fullscreenBtn" title="ПОЛНЫЙ ЭКРАН">⛶</div>
+    
+    <main class="layout" id="mainContent">
+        <header class="header">
+            <div class="logo">
+                <a href="index.html" style="text-decoration: none; color: inherit;">
+                    <span class="logo-main">ГРОБ</span>
+                    <span class="logo-sub">ГРАЖДАНСКАЯ ОБОРОНА · 1984–∞</span>
+                </a>
+            </div>
+            <nav class="tabs-container">
+                <div class="tabs">
+                    <a href="map.html" class="tab">КАРТА</a>
+                    <a href="index.html" class="tab">ГЕНЕЗИС</a>
+                    <a href="golden.html" class="tab">ЗОЛОТОЙ ВЕК</a>
+                    <a href="psych.html" class="tab">ПСИХОДЕЛИЯ</a>
+                    <a href="lineup.html" class="tab">СОСТАВ</a>
+                    <a href="discography.html" class="tab active">ДИСКОГРАФИЯ</a>
+                    <a href="philosophy.html" class="tab">ФИЛОСОФИЯ</a>
+                    <a href="legacy.html" class="tab">НАСЛЕДИЕ</a>
+                </div>
+                <div class="tab-indicator"></div>
+            </nav>
+        </header>
+        
+        <section class="section">
+            <div class="section-header animate">
+                <div class="section-year">1985–2007</div>
+                <h1 class="section-title">
+                    <span class="title-line">ДИСКОГРАФИЯ</span>
+                    <span class="title-line">СТУДИЙНЫЕ АЛЬБОМЫ</span>
+                </h1>
+            </div>
+            
+            <!-- 1985-1987 -->
+            <div class="card animate" style="margin-bottom: 1rem;">
+                <div class="card-label">РАННИЙ ПЕРИОД · 1985–1986</div>
+            </div>
+            
+            <div class="discography-list">
+                <div class="album-row card animate" data-depth="0.05"><span>1985</span><span>Поганая молодёжь</span><span>Дебютный альбом</span></div>
+                <div class="album-row card animate" data-depth="0.05"><span>1985</span><span>Оптимизм</span><span>Экспериментальный</span></div>
+                <div class="album-row card animate" data-depth="0.05"><span>1986</span><span>Игра в бисер перед свиньями</span><span>Становление стиля</span></div>
+                <div class="album-row card animate" data-depth="0.05"><span>1986</span><span>Красный альбом</span><span>Сборник ранних записей</span></div>
+            </div>
+            
+            <!-- 1987 -->
+            <div class="card animate" style="margin: 2rem 0 1rem;">
+                <div class="card-label">КЛАССИЧЕСКИЙ ПЕРИОД · 1987</div>
+            </div>
+            
+            <div class="discography-list">
+                <div class="album-row card animate" data-depth="0.05"><span>1987</span><span>Мышеловка</span><span>Начало классики</span></div>
+                <div class="album-row card animate" data-depth="0.05"><span>1987</span><span>Хорошо!!</span><span>Энергичный панк</span></div>
+                <div class="album-row card animate" data-depth="0.05"><span>1987</span><span>Тоталитаризм</span><span>Концептуальный</span></div>
+                <div class="album-row card animate" data-depth="0.05"><span>1987</span><span>Некрофилия</span><span>Мрачное звучание</span></div>
+            </div>
+            
+            <!-- 1988-1990 -->
+            <div class="card animate" style="margin: 2rem 0 1rem;">
+                <div class="card-label">ЗОЛОТОЙ ВЕК · 1988–1990</div>
+            </div>
+            
+            <div class="discography-list">
+                <div class="album-row card animate" data-depth="0.05"><span>1988</span><span>Всё идёт по плану</span><span>Культовый альбом</span></div>
+                <div class="album-row card animate" data-depth="0.05"><span>1988</span><span>Так закалялась сталь</span><span>Концертный</span></div>
+                <div class="album-row card animate" data-depth="0.05"><span>1989</span><span>Русское поле экспериментов</span><span>Вершина творчества</span></div>
+                <div class="album-row card animate" data-depth="0.05"><span>1989</span><span>Вершки и корешки</span><span>Акустика</span></div>
+                <div class="album-row card animate" data-depth="0.05"><span>1990</span><span>Инструкция по выживанию</span><span>Финал классики</span></div>
+                <div class="album-row card animate" data-depth="0.05"><span>1990</span><span>Последний концерт в Таллине</span><span>Live</span></div>
+            </div>
+            
+            <!-- Егор и Опизденевшие -->
+            <div class="card animate" style="margin: 2rem 0 1rem;">
+                <div class="card-label">ЕГОР И ОПИЗДЕНЕВШИЕ · 1990–1993</div>
+            </div>
+            
+            <div class="discography-list">
+                <div class="album-row card animate" data-depth="0.05"><span>1990</span><span>Прыг-скок</span><span>Психоделия</span></div>
+                <div class="album-row card animate" data-depth="0.05"><span>1993</span><span>Сто лет одиночества</span><span>Магнум опус</span></div>
+            </div>
+            
+            <!-- Возвращение -->
+            <div class="card animate" style="margin: 2rem 0 1rem;">
+                <div class="card-label">ВОЗВРАЩЕНИЕ ГРОБ · 1997–2007</div>
+            </div>
+            
+                        <div class="discography-list">
+                <div class="album-row card animate" data-depth="0.05"><span>1989</span><span>Русское поле экспериментов</span><span>Вершина творчества</span></div>
+                <div class="album-row card animate" data-depth="0.05"><span>1989</span><span>Вершки и корешки</span><span>Акустика</span></div>
+                <div class="album-row card animate" data-depth="0.05"><span>1990</span><span>Инструкция по выживанию</span><span>Финал классики</span></div>
+            </div>
+            
+            <!-- АРТЕФАКТ: ВЕРШКИ И КОРЕШКИ -->
+            <div class="artifact-container animate" style="margin-top: 3rem;">
+                <img src="assets/letov.jpg" alt="Егор Летов — Вершки и корешки" class="artifact-image">
+                <div class="artifact-caption">
+                </div>
+            </div>
+            
+            <div class="stats-grid" style="margin-top: 4rem;">
+                <div class="stat-card animate">
+                    <div class="stat-num">50+</div>
+                    <div class="stat-label">АЛЬБОМОВ</div>
+                </div>
+                <div class="stat-card animate">
+                    <div class="stat-num">300+</div>
+                    <div class="stat-label">ПЕСЕН</div>
+                </div>
+                <div class="stat-card animate">
+                    <div class="stat-num">24</div>
+                    <div class="stat-label">ГОДА ТВОРЧЕСТВА</div>
+                </div>
+                <div class="stat-card animate">
+                    <div class="stat-num">∞</div>
+                    <div class="stat-label">НАСЛЕДИЕ</div>
+                </div>
+            </div>
+            
+            <div class="marquee">
+                <div class="marquee-inner">
+                    <span>✦ 50+ АЛЬБОМОВ ✦ 300+ ПЕСЕН ✦ 24 ГОДА ТВОРЧЕСТВА ✦ БЕССМЕРТНОЕ НАСЛЕДИЕ ✦</span>
+                </div>
+            </div>
+        </section>
+        
+        <footer class="footer">
+            <div>© ГРАЖДАНСКАЯ ОБОРОНА · ИСТОРИЯ ГРУППЫ</div>
+            <div><span>⚡</span> ДИЗАЙН-МОНУМЕНТ <span>⚡</span></div>
+            <div>ОМСК · 1984 – ∞</div>
+        </footer>
+    </main>
+    
+    <script src="js/particles.js"></script>
+    <script src="js/cursor.js"></script>
+    <script src="js/audio.js"></script>
+    <script src="js/parallax.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

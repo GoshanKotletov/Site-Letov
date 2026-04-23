@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>ГРОБ · ГЕНЕЗИС</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/tabs.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,900;1,300&display=swap" rel="stylesheet">
+</head>
+<body class="dark">
+    <div class="cursor-anarchy">Ⓐ</div>
+    <div class="cursor-dot"></div>
+    <canvas id="stars-canvas"></canvas>
+    <div class="noise-overlay"></div>
+    <div class="vignette-overlay"></div>
+    <div class="scanline-overlay"></div>
+    
+    <div class="audio-control" id="audioBtn" title="ВКЛ/ВЫКЛ · АТМОСФЕРА">▶</div>
+    <div class="fullscreen-btn" id="fullscreenBtn" title="ПОЛНЫЙ ЭКРАН">⛶</div>
+    
+    <div class="preloader" id="preloader">
+        <div class="preloader-content">
+            <div class="preloader-logo">
+                <span class="preloader-letter">Г</span>
+                <span class="preloader-letter">Р</span>
+                <span class="preloader-letter">О</span>
+                <span class="preloader-letter">Б</span>
+            </div>
+            <div class="preloader-text">ЗАГРУЗКА МОНУМЕНТА</div>
+            <div class="preloader-progress-container">
+                <div class="preloader-progress" id="progress">0%</div>
+                <div class="preloader-bar"><div class="preloader-bar-fill" id="progressFill"></div></div>
+            </div>
+            <div class="preloader-quote">«ВСЁ ИДЁТ ПО ПЛАНУ»</div>
+        </div>
+    </div>
+    
+    <main class="layout" id="mainContent" style="opacity: 0;">
+        <header class="header">
+            <div class="logo">
+                <span class="logo-main">ГРОБ</span>
+                <span class="logo-sub">ГРАЖДАНСКАЯ ОБОРОНА · 1984–∞</span>
+            </div>
+            <nav class="tabs-container">
+                <div class="tabs">
+                    <a href="map.html" class="tab">КАРТА</a>
+                    <a href="index.html" class="tab active">ГЕНЕЗИС</a>
+                    <a href="golden.html" class="tab">ЗОЛОТОЙ ВЕК</a>
+                    <a href="psych.html" class="tab">ПСИХОДЕЛИЯ</a>
+                    <a href="lineup.html" class="tab">СОСТАВ</a>
+                    <a href="discography.html" class="tab">ДИСКОГРАФИЯ</a>
+                    <a href="philosophy.html" class="tab">ФИЛОСОФИЯ</a>
+                    <a href="legacy.html" class="tab">НАСЛЕДИЕ</a>
+                </div>
+                <div class="tab-indicator"></div>
+            </nav>
+        </header>
+        
+        <section class="section">
+            <div class="section-header animate">
+                <div class="section-year">1982–1984</div>
+                <h1 class="section-title">
+                    <span class="title-line">ПОСЕВ</span>
+                    <span class="title-line">ЗАРОЖДЕНИЕ</span>
+                </h1>
+            </div>
+            
+            <div class="grid-2">
+                <div class="card animate" data-depth="0.1">
+                    <div class="card-label">/01 ПРЕДТЕЧА</div>
+                    <div class="card-value">ПОСЕВ</div>
+                    <div class="card-desc">Проект Егора Летова и Андрея Бабенко. Магнитоальбомы: «Вонючие сны», «Сделай сам». Конкретная музыка, дадаизм, антисоветский протест. Полная творческая свобода в условиях омского андеграунда. Записи распространялись на катушках и кассетах среди узкого круга посвящённых.</div>
+                </div>
+                <div class="card animate" data-depth="0.15">
+                    <div class="card-label">/02 ДАТА РОЖДЕНИЯ</div>
+                    <div class="card-value">8 НОЯБРЯ 1984</div>
+                    <div class="card-desc">Официальное основание «Гражданской Обороны». Первый состав: Егор Летов и Константин Рябинов (Кузя УО). Первая репетиция прошла в обычной омской хрущёвке. Название придумано спонтанно — как пародия на официальную советскую риторику и одновременно как реальный призыв к самообороне от системы.</div>
+                </div>
+                <div class="card animate" data-depth="0.2">
+                    <div class="card-label">/03 ПЕРВЫЙ АЛЬБОМ</div>
+                    <div class="card-value">ПОГАНАЯ МОЛОДЁЖЬ</div>
+                    <div class="card-desc">1985 год. Записан на бытовую технику в домашних условиях. Грязное гаражное звучание, тексты — тотальный протест против системы, быта и самого существования. Манифест нового поколения, отвергающего советскую действительность. Песни «Поганая молодёжь», «Я бесполезен», «Мама, мама...».</div>
+                </div>
+                <div class="card animate" data-depth="0.12">
+                    <div class="card-label">/04 КОНТЕКСТ</div>
+                    <div class="card-value">ОМСК · АНДЕГРАУНД</div>
+                    <div class="card-desc">Сибирский панк-рок формировался в полной изоляции от московской и ленинградской сцен. Отсутствие информации о западной музыке компенсировалось собственной изобретательностью. Омск стал центром радикального андеграунда, где не было компромиссов с властью и официальной культурой.</div>
+                </div>
+                <div class="card animate" data-depth="0.18">
+                    <div class="card-label">/05 ОПТИМИЗМ</div>
+                    <div class="card-value">ВТОРОЙ АЛЬБОМ · 1985</div>
+                    <div class="card-desc">Записан сразу после дебюта. Звучание становится ещё более экспериментальным. Появляются элементы нойза и конкретной музыки. Тексты — смесь чёрного юмора и социальной критики. Альбом укрепил репутацию группы в андеграундной среде.</div>
+                </div>
+                <div class="card animate" data-depth="0.14">
+                    <div class="card-label">/06 ИГРА В БИСЕР</div>
+                    <div class="card-value">ПЕРЕД СВИНЬЯМИ · 1986</div>
+                    <div class="card-desc">Третий магнитоальбом. Название — отсылка к роману Германа Гессе. Музыка становится сложнее, появляются элементы психоделии. Формируется уникальный стиль, который позже назовут «сибирским панком» — смесь гаражного рока, нойза и философской лирики.</div>
+                </div>
+            </div>
+            
+            <blockquote class="quote animate">
+                <span class="quote-line">«Я ВСЕГДА</span>
+                <span class="quote-line">БУДУ ПРОТИВ»</span>
+                <cite>— Егор Летов, 1988</cite>
+            </blockquote>
+            
+            <div class="marquee">
+                <div class="marquee-inner">
+                    <span>✦ ПОСЕВ — НАЧАЛО ВСЕГО ✦</span>
+                    <span>✦ 1982: ПЕРВЫЕ ЗАПИСИ ✦</span>
+                    <span>✦ БАБЕНКО И ЛЕТОВ ✦</span>
+                    <span>✦ КОНКРЕТНАЯ МУЗЫКА ✦</span>
+                    <span>✦ 1984: РОЖДЕНИЕ ГРОБ ✦</span>
+                    <span>✦ ПОГАНАЯ МОЛОДЁЖЬ ✦</span>
+                    <span>✦ ОМСКИЙ АНДЕГРАУНД ✦</span>
+                    <span>✦ ПОСЕВ — НАЧАЛО ВСЕГО ✦</span>
+                </div>
+            </div>
+        </section>
+        
+        <footer class="footer">
+            <div>© ГРАЖДАНСКАЯ ОБОРОНА · ИСТОРИЯ ГРУППЫ</div>
+            <div><span>⚡</span> ДИЗАЙН-МОНУМЕНТ <span>⚡</span></div>
+            <div>ОМСК · 1984 – ∞</div>
+        </footer>
+    </main>
+    
+    <script src="js/particles.js"></script>
+    <script src="js/cursor.js"></script>
+    <script src="js/audio.js"></script>
+    <script src="js/parallax.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

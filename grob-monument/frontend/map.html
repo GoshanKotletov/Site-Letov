@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>ГРОБ · ИНТЕРАКТИВНАЯ КАРТА</title>
+    
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/tabs.css">
+    <link rel="stylesheet" href="css/animations.css">
+    
+    <!-- Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <!-- Шрифты -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,900;1,300&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Стили для карты */
+        .map-layout { padding-bottom: 1rem; }
+        .map-section { width: 100%; }
+        
+        .map-stats {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .stat-badge {
+            padding: 1rem 2.5rem;
+            border: 1px solid #333;
+            background: rgba(15, 15, 15, 0.9);
+            backdrop-filter: blur(10px);
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: #fff;
+            font-family: 'Playfair Display', serif;
+            position: relative;
+        }
+        
+        .stat-badge::before {
+            content: attr(data-label);
+            display: block;
+            font-size: 0.7rem;
+            color: #aaa;
+            letter-spacing: 0.2em;
+            margin-bottom: 0.3rem;
+            font-family: 'Space Mono', monospace;
+            font-weight: 400;
+        }
+        
+        .map-legend {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            opacity: 0.5;
+            transition: opacity 0.3s;
+            padding: 0.5rem 1rem;
+            border: 1px solid #333;
+            background: rgba(15, 15, 15, 0.7);
+        }
+        
+        .legend-item.active {
+            opacity: 1;
+            border-color: #fff;
+        }
+        
+        .legend-dot {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            border: 2px solid;
+        }
+        
+        .legend-dot.listeners { background: #fff; border-color: #fff; }
+        .legend-dot.studios { background: #b0a088; border-color: #b0a088; }
+        .legend-dot.influence { background: #ff4444; border-color: #ff4444; }
+        
+        .legend-label {
+            font-family: 'Space Mono', monospace;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 0.8rem;
+            color: #fff;
+        }
+        
+        .map-container {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            border: 1px solid #333;
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+        
+        #map {
+            width: 100%;
+            height: 100%;
+            background: #000 !important;
+            z-index: 1;
+        }
+        
+        .leaflet-container { background: #000 !important; }
+        
+        .leaflet-control-zoom { border: 1px solid #333 !important; }
+        .leaflet-control-zoom a {
+            background: rgba(15, 15, 15, 0.9) !important;
+            color: #fff !important;
+            border-bottom: 1px solid #333 !important;
+        }
+        .leaflet-control-zoom a:hover { background: #fff !important; color: #000 !important; }
+        
+        .leaflet-popup-content-wrapper {
+            background: rgba(10, 10, 10, 0.95) !important;
+            color: #fff !important;
+            border: 1px solid #333 !important;
+            border-radius: 0 !important;
+        }
+        .leaflet-popup-tip { background: #333 !important; }
+        
+        .map-overlay {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            pointer-events: none;
+            z-index: 10;
+            text-align: center;
+        }
+        
+        .map-instruction {
+            display: inline-block;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 0.8rem 2rem;
+            border: 1px solid #333;
+            font-size: 0.8rem;
+            letter-spacing: 0.2em;
+            color: #aaa;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+        
+        .map-controls {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .map-btn {
+            background: rgba(15, 15, 15, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid #333;
+            color: #fff;
+            padding: 1rem 2rem;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .map-btn:hover {
+            background: #fff;
+            color: #000;
+            border-color: #fff;
+        }
+        
+        .add-marker-form { margin-bottom: 2rem; }
+        
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label {
+            display: block;
+            font-size: 0.7rem;
+            color: #aaa;
+            letter-spacing: 0.2em;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid #333;
+            color: #fff;
+            font-family: 'Space Mono', monospace;
+            font-size: 1rem;
+        }
+        .form-group input:focus { outline: none; border-color: #fff; }
+        .form-group input[readonly] { background: rgba(0, 0, 0, 0.3); color: #888; }
+        
+        .form-actions { display: flex; gap: 1rem; }
+        
+        .recent-markers { margin: 2rem 0; }
+        .recent-list { max-height: 300px; overflow-y: auto; }
+        
+        .recent-item {
+            padding: 1rem;
+            border-bottom: 1px solid #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .recent-item:last-child { border-bottom: none; }
+        .recent-location { display: flex; flex-direction: column; }
+        .recent-city { font-weight: 700; color: #fff; text-transform: uppercase; }
+        .recent-country { font-size: 0.8rem; color: #aaa; }
+        .recent-name { color: #888; font-style: italic; }
+        .recent-time { font-size: 0.7rem; color: #666; }
+        .loading { text-align: center; padding: 2rem; color: #888; }
+        
+        .custom-marker { background: transparent; }
+        .marker-dot {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            border: 3px solid #000;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .marker-dot:hover { transform: scale(1.5); }
+        
+        .map-info-panel {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.95);
+            border: 1px solid #fff;
+            padding: 1.5rem;
+            max-width: 300px;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            display: none;
+        }
+        .map-info-panel.active { display: block; }
+        .panel-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+        .panel-desc {
+            font-family: 'Space Mono', monospace;
+            color: #aaa;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        .panel-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            color: #aaa;
+            font-size: 1.5rem;
+        }
+        .panel-close:hover { color: #fff; }
+        
+        @media (max-width: 768px) {
+            .map-container { height: 400px; }
+            .map-stats { justify-content: center; }
+            .stat-badge { padding: 0.8rem 1.5rem; font-size: 1.5rem; }
+            .map-btn { padding: 0.8rem 1rem; font-size: 0.8rem; }
+            .form-actions { flex-direction: column; }
+        }
+    </style>
+</head>
+<body class="dark">
+    <div class="cursor-anarchy">Ⓐ</div>
+    <div class="cursor-dot"></div>
+    <canvas id="stars-canvas"></canvas>
+    <div class="noise-overlay"></div>
+    <div class="vignette-overlay"></div>
+    <div class="scanline-overlay"></div>
+    
+    <div class="audio-control" id="audioBtn" title="ВКЛ/ВЫКЛ · АТМОСФЕРА">▶</div>
+    <div class="fullscreen-btn" id="fullscreenBtn" title="ПОЛНЫЙ ЭКРАН">⛶</div>
+    
+    <main class="layout map-layout" id="mainContent">
+        <header class="header">
+            <div class="logo">
+                <a href="index.html" style="text-decoration: none; color: inherit;">
+                    <span class="logo-main">ГРОБ</span>
+                    <span class="logo-sub">ГРАЖДАНСКАЯ ОБОРОНА · 1984–∞</span>
+                </a>
+            </div>
+            <nav class="tabs-container">
+                <div class="tabs">
+                    <a href="index.html" class="tab">ГЕНЕЗИС</a>
+                    <a href="golden.html" class="tab">ЗОЛОТОЙ ВЕК</a>
+                    <a href="psych.html" class="tab">ПСИХОДЕЛИЯ</a>
+                    <a href="lineup.html" class="tab">СОСТАВ</a>
+                    <a href="discography.html" class="tab">ДИСКОГРАФИЯ</a>
+                    <a href="philosophy.html" class="tab">ФИЛОСОФИЯ</a>
+                    <a href="legacy.html" class="tab">НАСЛЕДИЕ</a>
+                    <a href="map.html" class="tab active">КАРТА</a>
+                </div>
+                <div class="tab-indicator"></div>
+            </nav>
+        </header>
+        
+        <section class="section map-section">
+            <div class="section-header animate">
+                <div class="section-year">ГЕОГРАФИЯ</div>
+                <h1 class="section-title">
+                    <span class="title-line">ИНТЕРАКТИВНАЯ</span>
+                    <span class="title-line">КАРТА СВЯЗЕЙ</span>
+                </h1>
+            </div>
+            
+            <div class="map-stats animate">
+                <div class="stat-badge" id="totalMarkers" data-label="СЛУШАТЕЛЕЙ">0</div>
+                <div class="stat-badge" id="totalCountries" data-label="СТРАН">0</div>
+                <div class="stat-badge" id="totalInfluence" data-label="ВЛИЯНИЕ">6</div>
+            </div>
+            
+            <div class="map-legend animate">
+                <div class="legend-item active" data-layer="listeners">
+                    <span class="legend-dot listeners"></span>
+                    <span class="legend-label">СЛУШАТЕЛИ</span>
+                </div>
+                <div class="legend-item active" data-layer="studios">
+                    <span class="legend-dot studios"></span>
+                    <span class="legend-label">МЕСТА ЗАПИСИ</span>
+                </div>
+                <div class="legend-item active" data-layer="influence">
+                    <span class="legend-dot influence"></span>
+                    <span class="legend-label">ВЛИЯНИЕ</span>
+                </div>
+            </div>
+            
+            <div class="map-container animate">
+                <div id="map"></div>
+                <div class="map-info-panel" id="infoPanel">
+                    <span class="panel-close" id="closePanel">&times;</span>
+                    <div class="panel-title" id="panelTitle"></div>
+                    <div class="panel-desc" id="panelDesc"></div>
+                </div>
+                <div class="map-overlay">
+                    <div class="map-instruction">
+                        <span>⚡ КЛИКНИТЕ ПО МЕТКАМ · ОТКЛЮЧАЙТЕ СЛОИ В ЛЕГЕНДЕ ⚡</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="map-controls animate">
+                <button class="map-btn" id="locateBtn">📍 МОЁ МЕСТО</button>
+                <button class="map-btn" id="addMarkerBtn">➕ ОТМЕТИТЬ СЕБЯ</button>
+                <button class="map-btn" id="resetViewBtn">🔄 СБРОС</button>
+            </div>
+            
+            <div class="add-marker-form animate" id="markerForm" style="display: none;">
+                <div class="card">
+                    <div class="card-label">НОВАЯ МЕТКА</div>
+                    <div class="form-group">
+                        <label>ИМЯ</label>
+                        <input type="text" id="listenerName" placeholder="Аноним" maxlength="50">
+                    </div>
+                    <div class="form-group">
+                        <label>ГОРОД</label>
+                        <input type="text" id="markerCity" placeholder="Определится автоматически" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>СТРАНА</label>
+                        <input type="text" id="markerCountry" placeholder="Определится автоматически" readonly>
+                    </div>
+                    <div class="form-actions">
+                        <button class="map-btn" id="saveMarkerBtn">✅ СОХРАНИТЬ</button>
+                        <button class="map-btn" id="cancelMarkerBtn">❌ ОТМЕНА</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="recent-markers animate">
+                <div class="card">
+                    <div class="card-label">ПОСЛЕДНИЕ ОТМЕТКИ</div>
+                    <div id="recentMarkersList" class="recent-list">
+                        <div class="loading">Загрузка...</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="marquee">
+                <div class="marquee-inner">
+                    <span>✦ ОМСК ✦ НОВОСИБИРСК ✦ МОСКВА ✦ ПИТЕР ✦ МИНСК ✦ КИЕВ ✦ ПАРИЖ ✦ НЬЮ-ЙОРК ✦</span>
+                </div>
+            </div>
+        </section>
+        
+        <footer class="footer">
+            <div>© ГРАЖДАНСКАЯ ОБОРОНА · ИСТОРИЯ ГРУППЫ</div>
+            <div><span>⚡</span> ДИЗАЙН-МОНУМЕНТ <span>⚡</span></div>
+            <div>ОМСК · 1984 – ∞</div>
+        </footer>
+    </main>
+    
+    <script src="js/particles.js"></script>
+    <script src="js/cursor.js"></script>
+    <script src="js/audio.js"></script>
+    <script src="js/parallax.js"></script>
+    <script src="js/main.js"></script>
+    
+    <script>
+        // ===== ИНТЕРАКТИВНАЯ КАРТА (ЧЁРНЫЙ ФОН, БЕЛЫЕ ГРАНИЦЫ) =====
+        (function() {
+            'use strict';
+            
+            const InteractiveMap = {
+                map: null,
+                layers: { listeners: L.layerGroup(), studios: L.layerGroup(), influence: L.layerGroup() },
+                activeLayers: ['listeners', 'studios', 'influence'],
+                selectedLat: null, selectedLng: null,
+                selectedCity: '', selectedCountry: '',
+                API_URL: '/api',
+                
+                studiosData: [
+                    { lat: 54.9833, lng: 73.3667, name: 'ГрОб-студия', desc: 'Домашняя студия Летова в Омске. Здесь записано большинство альбомов 1987-1990.', city: 'Омск' },
+                    { lat: 55.0302, lng: 82.9204, name: 'Квартира Янки', desc: 'Место записи ранних акустических альбомов Янки Дягилевой.', city: 'Новосибирск' },
+                    { lat: 55.7558, lng: 37.6173, name: 'Студия на Петровке', desc: 'Московская студия, где записывались поздние альбомы.', city: 'Москва' },
+                    { lat: 59.9343, lng: 30.3351, name: 'Студия Тропилло', desc: 'Легендарная студия Ленинградского рок-клуба.', city: 'Санкт-Петербург' },
+                ],
+                
+                influenceData: [
+                    { lat: 55.7558, lng: 37.6173, name: 'Lumen', desc: 'Группа из Уфы. Вокалист Рустем Булатов называл Летова главным вдохновителем.', city: 'Москва' },
+                    { lat: 56.8389, lng: 60.6057, name: 'Смысловые Галлюцинации', desc: 'Екатеринбургская группа. Сергей Бобунец — поклонник Летова.', city: 'Екатеринбург' },
+                    { lat: 53.9045, lng: 27.5615, name: 'Ляпис Трубецкой', desc: 'Сергей Михалок говорил о влиянии сибирского панка.', city: 'Минск' },
+                    { lat: 50.4501, lng: 30.5234, name: 'Вопли Видоплясова', desc: 'Киевская группа, испытавшая влияние ГрОб.', city: 'Киев' },
+                    { lat: 47.0105, lng: 28.8638, name: 'Zdob și Zdub', desc: 'Молдавская группа, вдохновлялись Летовым.', city: 'Кишинёв' },
+                    { lat: 48.8566, lng: 2.3522, name: 'La Fraction', desc: 'Французская панк-группа, исполняла каверы ГрОб.', city: 'Париж' },
+                ],
+                
+                init: function() {
+                    this.initMap();
+                    this.loadListeners();
+                    this.addStudioMarkers();
+                    this.addInfluenceMarkers();
+                    this.loadStats();
+                    this.loadRecentMarkers();
+                    this.bindEvents();
+                    console.log('Карта запущена (чёрный фон, белые границы)');
+                },
+                
+                initMap: function() {
+                    this.map = L.map('map', { 
+                        center: [55.7558, 70.0], 
+                        zoom: 3, 
+                        zoomControl: true 
+                    });
+                    
+                    // Абсолютно чёрный фон
+                    document.getElementById('map').style.backgroundColor = '#000';
+                    
+                    // Только границы стран (белые линии) - тёмная подложка без подписей
+                    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png', {
+                        attribution: '',
+                        subdomains: 'abcd',
+                        maxZoom: 19
+                    }).addTo(this.map);
+                    
+                    // Белые подписи стран и городов
+                    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}{r}.png', {
+                        attribution: '&copy; CARTO, OpenStreetMap',
+                        subdomains: 'abcd',
+                        maxZoom: 19
+                    }).addTo(this.map);
+                    
+                    this.layers.listeners.addTo(this.map);
+                    this.layers.studios.addTo(this.map);
+                    this.layers.influence.addTo(this.map);
+                    
+                    this.map.on('click', (e) => {
+                        this.selectedLat = e.latlng.lat;
+                        this.selectedLng = e.latlng.lng;
+                        this.reverseGeocode(e.latlng.lat, e.latlng.lng);
+                    });
+                },
+                
+                addStudioMarkers: function() {
+                    const icon = L.divIcon({ className: 'custom-marker', html: '<div class="marker-dot" style="background: #b0a088; border-color: #b0a088;"></div>', iconSize: [20, 20], iconAnchor: [10, 10] });
+                    this.studiosData.forEach(s => {
+                        L.marker([s.lat, s.lng], { icon }).bindPopup(`<strong>${s.name}</strong><br>${s.city}<br><em>${s.desc}</em>`).addTo(this.layers.studios);
+                    });
+                },
+                
+                addInfluenceMarkers: function() {
+                    const icon = L.divIcon({ className: 'custom-marker', html: '<div class="marker-dot" style="background: #ff4444; border-color: #ff4444;"></div>', iconSize: [20, 20], iconAnchor: [10, 10] });
+                    this.influenceData.forEach(i => {
+                        L.marker([i.lat, i.lng], { icon }).bindPopup(`<strong>${i.name}</strong><br>${i.city}<br><em>${i.desc}</em>`).addTo(this.layers.influence);
+                    });
+                    document.getElementById('totalInfluence').textContent = this.influenceData.length;
+                },
+                
+                loadListeners: async function() {
+                    try {
+                        const res = await fetch(`${this.API_URL}/markers`);
+                        const markers = await res.json();
+                        const icon = L.divIcon({ className: 'custom-marker', html: '<div class="marker-dot" style="background: #fff; border-color: #fff;"></div>', iconSize: [20, 20], iconAnchor: [10, 10] });
+                        markers.forEach(m => {
+                            L.marker([m.lat, m.lng], { icon }).bindPopup(`<strong>${m.city||'?'}</strong><br>${m.country||''}<br><em>${m.listener_name||'Аноним'}</em>`).addTo(this.layers.listeners);
+                        });
+                        document.getElementById('totalMarkers').textContent = markers.length;
+                    } catch(e) { console.error(e); }
+                },
+                
+                loadStats: async function() {
+                    try {
+                        const res = await fetch(`${this.API_URL}/markers/stats`);
+                        const stats = await res.json();
+                        document.getElementById('totalCountries').textContent = stats.length;
+                    } catch(e) {}
+                },
+                
+                loadRecentMarkers: async function() {
+                    try {
+                        const res = await fetch(`${this.API_URL}/markers`);
+                        const markers = await res.json();
+                        const list = document.getElementById('recentMarkersList');
+                        if (!markers.length) { list.innerHTML = '<div class="loading">Нет отметок</div>'; return; }
+                        list.innerHTML = markers.slice(0, 8).map(m => `
+                            <div class="recent-item">
+                                <div class="recent-location"><span class="recent-city">${m.city||'?'}</span><span class="recent-country">${m.country||''}</span></div>
+                                <div class="recent-name">${m.listener_name||'Аноним'}</div>
+                                <div class="recent-time">${new Date(m.created_at).toLocaleDateString('ru')}</div>
+                            </div>
+                        `).join('');
+                    } catch(e) {}
+                },
+                
+                reverseGeocode: async function(lat, lng) {
+                    try {
+                        const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&accept-language=ru`);
+                        const d = await res.json();
+                        this.selectedCity = d.address?.city || d.address?.town || 'Неизвестно';
+                        this.selectedCountry = d.address?.country || 'Неизвестно';
+                    } catch(e) {
+                        this.selectedCity = 'Неизвестно'; this.selectedCountry = 'Неизвестно';
+                    }
+                    document.getElementById('markerCity').value = this.selectedCity;
+                    document.getElementById('markerCountry').value = this.selectedCountry;
+                    document.getElementById('markerForm').style.display = 'block';
+                    document.getElementById('listenerName').focus();
+                },
+                
+                saveMarker: async function() {
+                    const name = document.getElementById('listenerName').value || 'Аноним';
+                    if (!this.selectedLat || !this.selectedLng) { alert('Сначала выберите место на карте'); return; }
+                    try {
+                        const res = await fetch(`${this.API_URL}/markers`, {
+                            method: 'POST', headers: {'Content-Type':'application/json'},
+                            body: JSON.stringify({ lat: this.selectedLat, lng: this.selectedLng, city: this.selectedCity, country: this.selectedCountry, listener_name: name })
+                        });
+                        const m = await res.json();
+                        const icon = L.divIcon({ className: 'custom-marker', html: '<div class="marker-dot" style="background: #fff; border-color: #fff;"></div>', iconSize: [20, 20], iconAnchor: [10, 10] });
+                        L.marker([m.lat, m.lng], { icon }).bindPopup(`<strong>${m.city}</strong><br>${m.country}<br><em>${m.listener_name}</em>`).addTo(this.layers.listeners);
+                        document.getElementById('markerForm').style.display = 'none';
+                        document.getElementById('totalMarkers').textContent = parseInt(document.getElementById('totalMarkers').textContent) + 1;
+                        this.loadRecentMarkers();
+                        this.loadStats();
+                        this.showToast('Метка добавлена!', `${this.selectedCity}, ${this.selectedCountry}`);
+                    } catch(e) { alert('Ошибка при сохранении'); }
+                },
+                
+                showToast: function(title, msg) {
+                    const toast = document.createElement('div');
+                    toast.style.cssText = 'position:fixed;bottom:120px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,0.95);border:1px solid #fff;padding:1rem 2rem;z-index:100000;font-family:Space Mono,monospace;';
+                    toast.innerHTML = `<div style="color:#fff;font-weight:700;">${title}</div><div style="color:#aaa;text-transform:uppercase;">${msg}</div>`;
+                    document.body.appendChild(toast);
+                    setTimeout(() => toast.remove(), 2500);
+                },
+                
+                toggleLayer: function(name) {
+                    if (this.activeLayers.includes(name)) {
+                        this.activeLayers = this.activeLayers.filter(l => l !== name);
+                        this.map.removeLayer(this.layers[name]);
+                    } else {
+                        this.activeLayers.push(name);
+                        this.map.addLayer(this.layers[name]);
+                    }
+                },
+                
+                bindEvents: function() {
+                    document.querySelectorAll('.legend-item').forEach(el => {
+                        el.addEventListener('click', () => { el.classList.toggle('active'); this.toggleLayer(el.dataset.layer); });
+                    });
+                    document.getElementById('closePanel').addEventListener('click', () => document.getElementById('infoPanel').classList.remove('active'));
+                    document.getElementById('locateBtn').addEventListener('click', () => {
+                        navigator.geolocation.getCurrentPosition(p => { 
+                            this.map.setView([p.coords.latitude, p.coords.longitude], 8);
+                            this.selectedLat = p.coords.latitude;
+                            this.selectedLng = p.coords.longitude;
+                            this.reverseGeocode(p.coords.latitude, p.coords.longitude);
+                        }, () => alert('Не удалось определить местоположение'));
+                    });
+                    document.getElementById('addMarkerBtn').addEventListener('click', () => this.showToast('Кликните по карте', 'Выберите место для отметки'));
+                    document.getElementById('resetViewBtn').addEventListener('click', () => this.map.setView([55.7558, 70.0], 3));
+                    document.getElementById('saveMarkerBtn').addEventListener('click', () => this.saveMarker());
+                    document.getElementById('cancelMarkerBtn').addEventListener('click', () => document.getElementById('markerForm').style.display = 'none');
+                }
+            };
+            
+            document.addEventListener('DOMContentLoaded', () => InteractiveMap.init());
+        })();
+    </script>
+</body>
+</html>

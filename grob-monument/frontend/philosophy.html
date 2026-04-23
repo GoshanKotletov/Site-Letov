@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>ГРОБ · ФИЛОСОФИЯ</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/tabs.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,900;1,300&display=swap" rel="stylesheet">
+</head>
+<body class="dark">
+    <div class="cursor-anarchy">Ⓐ</div>
+    <div class="cursor-dot"></div>
+    <canvas id="stars-canvas"></canvas>
+    <div class="noise-overlay"></div>
+    <div class="vignette-overlay"></div>
+    <div class="scanline-overlay"></div>
+    
+    <div class="audio-control" id="audioBtn" title="ВКЛ/ВЫКЛ · АТМОСФЕРА">▶</div>
+    <div class="fullscreen-btn" id="fullscreenBtn" title="ПОЛНЫЙ ЭКРАН">⛶</div>
+    
+    <main class="layout" id="mainContent">
+        <header class="header">
+            <div class="logo">
+                <a href="index.html" style="text-decoration: none; color: inherit;">
+                    <span class="logo-main">ГРОБ</span>
+                    <span class="logo-sub">ГРАЖДАНСКАЯ ОБОРОНА · 1984–∞</span>
+                </a>
+            </div>
+            <nav class="tabs-container">
+                <div class="tabs">
+                    <a href="map.html" class="tab">КАРТА</a>
+                    <a href="index.html" class="tab">ГЕНЕЗИС</a>
+                    <a href="golden.html" class="tab">ЗОЛОТОЙ ВЕК</a>
+                    <a href="psych.html" class="tab">ПСИХОДЕЛИЯ</a>
+                    <a href="lineup.html" class="tab">СОСТАВ</a>
+                    <a href="discography.html" class="tab">ДИСКОГРАФИЯ</a>
+                    <a href="philosophy.html" class="tab active">ФИЛОСОФИЯ</a>
+                    <a href="legacy.html" class="tab">НАСЛЕДИЕ</a>
+                </div>
+                <div class="tab-indicator"></div>
+            </nav>
+        </header>
+        
+        <section class="section">
+            <div class="section-header animate">
+                <div class="section-year">ИДЕОЛОГИЯ</div>
+                <h1 class="section-title">
+                    <span class="title-line">ФИЛОСОФИЯ</span>
+                    <span class="title-line">МИРОВОЗЗРЕНИЕ</span>
+                </h1>
+            </div>
+            
+            <div class="grid-3">
+                <div class="card animate" data-depth="0.1">
+                    <div class="card-value">АНАРХИЯ</div>
+                    <div class="card-desc">Полное отрицание государственной власти, иерархий и принуждения. Свобода личности как высшая ценность. Самоорганизация и взаимопомощь вместо вертикали власти. Летов был убеждённым анархистом, что отразилось во всём его творчестве.</div>
+                </div>
+                <div class="card animate" data-depth="0.12">
+                    <div class="card-value">АНТИФАШИЗМ</div>
+                    <div class="card-desc">Непримиримая борьба с любыми проявлениями фашизма, национализма, ксенофобии и шовинизма. «Я всегда буду против» — жизненное кредо. Летов резко выступал против правых идеологий и русского национализма.</div>
+                </div>
+                <div class="card animate" data-depth="0.14">
+                    <div class="card-value">ЭКЗИСТЕНЦИАЛИЗМ</div>
+                    <div class="card-desc">Поиск смысла жизни в абсурдном и жестоком мире. Влияние философии Альбера Камю, Жан-Поля Сартра, Фридриха Ницше. Человек обречён на свободу и ответственность за свои поступки.</div>
+                </div>
+                <div class="card animate" data-depth="0.16">
+                    <div class="card-value">ПАНК-РОК</div>
+                    <div class="card-desc">Не музыкальный жанр, а способ мышления и жизни. DIY-этика («сделай сам»), независимость, честность, прямота, отсутствие компромиссов. Панк как тотальное неприятие системы и её ценностей.</div>
+                </div>
+                <div class="card animate" data-depth="0.18">
+                    <div class="card-value">РУССКИЙ КОСМИЗМ</div>
+                    <div class="card-desc">Идеи Николая Фёдорова, Константина Циолковского. Преодоление смерти, всеобщее воскрешение, освоение космоса как миссия человечества. Летов часто обращался к этим темам в позднем творчестве.</div>
+                </div>
+                <div class="card animate" data-depth="0.2">
+                    <div class="card-value">ЭСХАТОЛОГИЯ</div>
+                    <div class="card-desc">Размышления о конце света, апокалипсисе, смерти и последующем возрождении. «Вечная весна» как символ цикличности бытия, надежды на обновление после катастрофы.</div>
+                </div>
+            </div>
+            
+            <div class="card animate" style="margin-top: 2rem;">
+                <div class="card-label">КЛЮЧЕВАЯ ИДЕЯ</div>
+                <div class="card-value">«ВСЁ ИДЁТ ПО ПЛАНУ»</div>
+                <div class="card-desc">Главная философская формула Летова. Одновременно ирония над советским официозом и экзистенциальное принятие неизбежности. План существует, но он абсурден и неподвластен человеку. Единственный выход — осознать это и продолжать жить, сохраняя внутреннюю свободу. Эта идея проходит через всё творчество: от раннего панк-нигилизма до поздних медитативных размышлений о космосе и смерти.</div>
+            </div>
+            
+            <blockquote class="quote animate">
+                <span class="quote-line">«РОДИНА СЛЫШИТ</span>
+                <span class="quote-line">РОДИНА ЗНАЕТ»</span>
+                <cite>— Всё идёт по плану, 1988</cite>
+            </blockquote>
+            
+            <div class="marquee">
+                <div class="marquee-inner">
+                    <span>✦ АНАРХИЯ ✦ АНТИФАШИЗМ ✦ ЭКЗИСТЕНЦИАЛИЗМ ✦ ПАНК-РОК ✦ РУССКИЙ КОСМИЗМ ✦ ЭСХАТОЛОГИЯ ✦</span>
+                </div>
+            </div>
+        </section>
+        
+        <footer class="footer">
+            <div>© ГРАЖДАНСКАЯ ОБОРОНА · ИСТОРИЯ ГРУППЫ</div>
+            <div><span>⚡</span> ДИЗАЙН-МОНУМЕНТ <span>⚡</span></div>
+            <div>ОМСК · 1984 – ∞</div>
+        </footer>
+    </main>
+    
+    <script src="js/particles.js"></script>
+    <script src="js/cursor.js"></script>
+    <script src="js/audio.js"></script>
+    <script src="js/parallax.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

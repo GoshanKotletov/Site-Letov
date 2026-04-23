@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>ГРОБ · ЯНКА ДЯГИЛЕВА</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/tabs.css">
+    <link rel="stylesheet" href="../css/animations.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,900;1,300&display=swap" rel="stylesheet">
+    <style>
+        .back-btn {
+            display: inline-block;
+            margin: 2rem 0;
+            padding: 1rem 2rem;
+            border: 1px solid var(--text);
+            color: var(--text);
+            text-decoration: none;
+            font-family: var(--font-mono);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            transition: all 0.3s;
+        }
+        .back-btn:hover {
+            background: var(--text);
+            color: var(--bg);
+        }
+        .track-list {
+            list-style: none;
+            margin-top: 1rem;
+        }
+        .track-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-secondary);
+        }
+        .track-list li:before {
+            content: "⚡";
+            margin-right: 1rem;
+            color: var(--text);
+        }
+    </style>
+</head>
+<body class="dark">
+    <div class="cursor-anarchy">Ⓐ</div>
+    <div class="cursor-dot"></div>
+    <canvas id="stars-canvas"></canvas>
+    <div class="noise-overlay"></div>
+    <div class="vignette-overlay"></div>
+    <div class="scanline-overlay"></div>
+    
+    <div class="audio-control" id="audioBtn" title="ВКЛ/ВЫКЛ · АТМОСФЕРА">▶</div>
+    <div class="fullscreen-btn" id="fullscreenBtn" title="ПОЛНЫЙ ЭКРАН">⛶</div>
+    
+    <main class="layout" id="mainContent">
+        <header class="header">
+            <div class="logo">
+                <a href="../index.html" style="text-decoration: none; color: inherit;">
+                    <span class="logo-main">ГРОБ</span>
+                    <span class="logo-sub">ГРАЖДАНСКАЯ ОБОРОНА · 1984–∞</span>
+                </a>
+            </div>
+            <nav class="tabs-container">
+                <div class="tabs">
+                    <a href="../index.html" class="tab">ГЕНЕЗИС</a>
+                    <a href="../golden.html" class="tab">ЗОЛОТОЙ ВЕК</a>
+                    <a href="../psych.html" class="tab">ПСИХОДЕЛИЯ</a>
+                    <a href="../lineup.html" class="tab active">СОСТАВ</a>
+                    <a href="../discography.html" class="tab">ДИСКОГРАФИЯ</a>
+                    <a href="../philosophy.html" class="tab">ФИЛОСОФИЯ</a>
+                    <a href="../legacy.html" class="tab">НАСЛЕДИЕ</a>
+                    <a href="../map.html" class="tab">КАРТА</a>
+                </div>
+                <div class="tab-indicator"></div>
+            </nav>
+        </header>
+        
+        <a href="../lineup.html" class="back-btn">← ВЕРНУТЬСЯ К СОСТАВУ</a>
+        
+        <section class="section">
+            <div class="section-header animate">
+                <div class="section-year">1966–1991</div>
+                <h1 class="section-title">
+                    <span class="title-line">ЯНКА</span>
+                    <span class="title-line">ДЯГИЛЕВА</span>
+                </h1>
+            </div>
+            
+            <div class="grid-2">
+                <div class="card animate" data-depth="0.1">
+                    <div class="card-label">ИМЯ</div>
+                    <div class="card-value">ЯНА СТАНИСЛАВОВНА ДЯГИЛЕВА</div>
+                    <div class="card-desc">Родилась 4 сентября 1966 года в Новосибирске. Советская рок-певица, поэтесса, автор песен, участница панк-рок-групп «Гражданская Оборона», «Великие Октябри».</div>
+                </div>
+                <div class="card animate" data-depth="0.15">
+                    <div class="card-label">РОЛЬ В ГРУППЕ</div>
+                    <div class="card-value">ВОКАЛ · БЭК-ВОКАЛ · БАС-ГИТАРА</div>
+                    <div class="card-desc">Ближайший соратник Летова. Участвовала в записи ключевых альбомов ГрОб. Её сольное творчество — одна из вершин сибирского панка.</div>
+                </div>
+            </div>
+            
+            <div class="card animate" style="margin: 2rem 0;">
+                <div class="card-label">БИОГРАФИЯ</div>
+                <div class="card-value">ЖИЗНЬ И ТВОРЧЕСТВО</div>
+                <div class="card-desc">
+                    <p>Начала писать стихи и песни в школьные годы. В 1987 году познакомилась с Егором Летовым, который стал её близким другом и творческим соратником.</p>
+                    <p>В 1988–1990 годах записала сольные альбомы «Не положено», «Деклассированным элементам», «Стыд и срам», «Ангедония», «Домой!». Её песни отличаются пронзительной искренностью, трагизмом и глубиной.</p>
+                    <p>Участвовала в записи альбомов «Гражданской Обороны»: «Русское поле экспериментов», «Инструкция по выживанию», а также проектов «Коммунизм».</p>
+                    <p>9 мая 1991 года погибла при невыясненных обстоятельствах — утонула в реке Иня недалеко от Новосибирска. Похоронена на Заельцовском кладбище.</p>
+                </div>
+            </div>
+            
+            <div class="grid-2">
+                <div class="card animate" data-depth="0.1">
+                    <div class="card-label">СОЛЬНЫЕ АЛЬБОМЫ</div>
+                    <div class="card-value">ДИСКОГРАФИЯ</div>
+                    <div class="card-desc">
+                        <strong>Не положено</strong> (1988)<br>
+                        <strong>Деклассированным элементам</strong> (1988)<br>
+                        <strong>Стыд и срам</strong> (1989)<br>
+                        <strong>Ангедония</strong> (1989)<br>
+                        <strong>Домой!</strong> (1990)<br>
+                        <strong>Продано!</strong> (1990)
+                    </div>
+                </div>
+                <div class="card animate" data-depth="0.15">
+                    <div class="card-label">КЛЮЧЕВЫЕ ТРЕКИ</div>
+                    <div class="card-value">ИЗБРАННОЕ</div>
+                    <ul class="track-list">
+                        <li>Особый резон (1988)</li>
+                        <li>По трамвайным рельсам (1988)</li>
+                        <li>От большого ума (1989)</li>
+                        <li>Берегись! (1989)</li>
+                        <li>Домой (1990)</li>
+                        <li>На чёрный день (1990)</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <blockquote class="quote animate">
+                <span class="quote-line">«НА ЧЁРНЫЙ ДЕНЬ</span>
+                <span class="quote-line">ОСТАВЛЮ ПЕСНЮ»</span>
+                <cite>— Янка Дягилева</cite>
+            </blockquote>
+        </section>
+        
+        <a href="../lineup.html" class="back-btn">← ВЕРНУТЬСЯ К СОСТАВУ</a>
+        
+        <footer class="footer">
+            <div>© ГРАЖДАНСКАЯ ОБОРОНА · ИСТОРИЯ ГРУППЫ</div>
+            <div><span>⚡</span> ДИЗАЙН-МОНУМЕНТ <span>⚡</span></div>
+            <div>ОМСК · 1984 – ∞</div>
+        </footer>
+    </main>
+    
+    <script src="../js/particles.js"></script>
+    <script src="../js/cursor.js"></script>
+    <script src="../js/audio.js"></script>
+    <script src="../js/parallax.js"></script>
+    <script src="../js/main.js"></script>
+</body>
+</html>

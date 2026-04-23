@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>ГРОБ · ПСИХОДЕЛИЯ</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/tabs.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,900;1,300&display=swap" rel="stylesheet">
+</head>
+<body class="dark">
+    <div class="cursor-anarchy">Ⓐ</div>
+    <div class="cursor-dot"></div>
+    <canvas id="stars-canvas"></canvas>
+    <div class="noise-overlay"></div>
+    <div class="vignette-overlay"></div>
+    <div class="scanline-overlay"></div>
+    
+    <div class="audio-control" id="audioBtn" title="ВКЛ/ВЫКЛ · АТМОСФЕРА">▶</div>
+    <div class="fullscreen-btn" id="fullscreenBtn" title="ПОЛНЫЙ ЭКРАН">⛶</div>
+    
+    <main class="layout" id="mainContent">
+        <header class="header">
+            <div class="logo">
+                <a href="index.html" style="text-decoration: none; color: inherit;">
+                    <span class="logo-main">ГРОБ</span>
+                    <span class="logo-sub">ГРАЖДАНСКАЯ ОБОРОНА · 1984–∞</span>
+                </a>
+            </div>
+            <nav class="tabs-container">
+                <div class="tabs">
+                    <a href="map.html" class="tab">КАРТА</a>
+                    <a href="index.html" class="tab">ГЕНЕЗИС</a>
+                    <a href="golden.html" class="tab">ЗОЛОТОЙ ВЕК</a>
+                    <a href="psych.html" class="tab active">ПСИХОДЕЛИЯ</a>
+                    <a href="lineup.html" class="tab">СОСТАВ</a>
+                    <a href="discography.html" class="tab">ДИСКОГРАФИЯ</a>
+                    <a href="philosophy.html" class="tab">ФИЛОСОФИЯ</a>
+                    <a href="legacy.html" class="tab">НАСЛЕДИЕ</a>
+                </div>
+                <div class="tab-indicator"></div>
+            </nav>
+        </header>
+        
+        <section class="section">
+            <div class="section-header animate">
+                <div class="section-year">1990–1997</div>
+                <h1 class="section-title">
+                    <span class="title-line">ЕГОР И ОПИЗДЕНЕВШИЕ</span>
+                    <span class="title-line">КОММУНИЗМ · ПСИХОДЕЛИЯ</span>
+                </h1>
+            </div>
+            
+            <div class="grid-2">
+                <div class="card animate" data-depth="0.1">
+                    <div class="card-label">/01 РОСПУСК ГРОБ</div>
+                    <div class="card-value">1990 · КОНЕЦ ЭПОХИ</div>
+                    <div class="card-desc">После записи альбома «Инструкция по выживанию» Летов объявляет о роспуске «Гражданской Обороны». Причины: творческое выгорание, давление КГБ, желание уйти от политизированного панка. Группа прекращает существование на несколько лет.</div>
+                </div>
+                <div class="card animate" data-depth="0.15">
+                    <div class="card-label">/02 ПРЫГ-СКОК</div>
+                    <div class="card-value">1990 · НОВОЕ НАЧАЛО</div>
+                    <div class="card-desc">Летов создаёт проект «Егор и Опизденевшие». Первый альбом «Прыг-скок» — радикальный поворот в сторону психоделии. Гаражный рок смешивается с фолком, эзотерикой и медитативными экспериментами. Песни «Прыг-скок», «Про червячков», «Отряд не заметил потери бойца».</div>
+                </div>
+                <div class="card animate" data-depth="0.2">
+                    <div class="card-label">/03 СТО ЛЕТ ОДИНОЧЕСТВА</div>
+                    <div class="card-value">1993 · МАГНУМ ОПУС</div>
+                    <div class="card-desc">Вершина психоделического периода. Двойной альбом из длинных медитативных композиций. Философская лирика о смерти, космосе, одиночестве и просветлении. «Сто лет одиночества», «Праздник кончился», «Иваново детство» — полный отход от прямолинейного панка в сторону сложных музыкальных форм. Альбом записан в состоянии глубочайшего творческого транса.</div>
+                </div>
+                <div class="card animate" data-depth="0.12">
+                    <div class="card-label">/04 КОММУНИЗМ</div>
+                    <div class="card-value">САЙД-ПРОЕКТ · 1989–1990</div>
+                    <div class="card-desc">Совместный проект Летова, Кузи УО и Олега Судакова (Манагер). Радикальный нойз, коллажи, абсурдистские тексты. Альбомы «На советской скорости», «Хроника пикирующего бомбардировщика», «13» — авангард в чистом виде, разрушающий все представления о музыке. Записано более 10 альбомов за короткий срок.</div>
+                </div>
+                <div class="card animate" data-depth="0.18">
+                    <div class="card-label">/05 ЦЫГАНЯТА И Я С ИЛЬИЧА</div>
+                    <div class="card-value">ЭКСПЕРИМЕНТАЛЬНЫЙ ПРОЕКТ</div>
+                    <div class="card-desc">Ещё один сайд-проект Летова и Кузи УО. Альбом «Гаубица лейтенанта Гурубы» — сюрреалистический коллаж из обрывков радиопередач, шумов, абсурдных текстов и конкретной музыки. Документ эпохи распада СССР, зафиксированный в звуке.</div>
+                </div>
+                <div class="card animate" data-depth="0.14">
+                    <div class="card-label">/06 ХРИСТОСЫ</div>
+                    <div class="card-value">ПСИХОДЕЛИЧЕСКИЙ ФОЛК</div>
+                    <div class="card-desc">Проект Летова, Кузи УО и Александра Рожкова. Единственный альбом «Христосы» — акустическая психоделия с элементами фолка и христианской мистики. Медитативные, завораживающие композиции, далёкие от всего, что Летов делал ранее.</div>
+                </div>
+            </div>
+            
+            <div class="card animate" style="margin-top: 2rem;">
+                <div class="card-label">/07 ВОЗВРАЩЕНИЕ ГРОБ</div>
+                <div class="card-value">1997 · СОЛНЦЕВОРОТ</div>
+                <div class="card-desc">После семи лет молчания «Гражданская Оборона» возвращается. Альбом «Солнцеворот» сочетает энергию классического периода с психоделическим опытом, накопленным за годы экспериментов. Песни «Солнцеворот», «Без меня», «Про дурачка» (новая версия) показывают зрелого, но всё такого же бескомпромиссного Летова. Группа вновь начинает концертную деятельность.</div>
+            </div>
+            
+            <div class="card animate" style="margin-top: 1rem;">
+                <div class="card-label">/08 НЕВЫНОСИМАЯ ЛЁГКОСТЬ БЫТИЯ</div>
+                <div class="card-value">1997 · ДВОЙНОЙ АЛЬБОМ</div>
+                <div class="card-desc">Второй альбом после возвращения. Название — отсылка к роману Милана Кундеры. Более спокойное, медитативное звучание. Песни «Невыносимая лёгкость бытия», «Свобода», «На исходе дня» — философские размышления о жизни, смерти и свободе. Альбом закрепил возвращение группы и показал, что Летов по-прежнему способен создавать великую музыку.</div>
+            </div>
+            
+            <blockquote class="quote animate">
+                <span class="quote-line">«ПРАЗДНИК КОНЧИЛСЯ</span>
+                <span class="quote-line">НАЧИНАЕТСЯ ЖИЗНЬ»</span>
+                <cite>— Сто лет одиночества, 1993</cite>
+            </blockquote>
+            
+            <div class="marquee">
+                <div class="marquee-inner">
+                    <span>✦ 1990: ПРЫГ-СКОК ✦</span>
+                    <span>✦ 1993: СТО ЛЕТ ОДИНОЧЕСТВА ✦</span>
+                    <span>✦ КОММУНИЗМ · ХРОНИКА ПИКИРУЮЩЕГО БОМБАРДИРОВЩИКА ✦</span>
+                    <span>✦ 1997: СОЛНЦЕВОРОТ ✦ НЕВЫНОСИМАЯ ЛЁГКОСТЬ БЫТИЯ ✦</span>
+                </div>
+            </div>
+        </section>
+        
+        <footer class="footer">
+            <div>© ГРАЖДАНСКАЯ ОБОРОНА · ИСТОРИЯ ГРУППЫ</div>
+            <div><span>⚡</span> ДИЗАЙН-МОНУМЕНТ <span>⚡</span></div>
+            <div>ОМСК · 1984 – ∞</div>
+        </footer>
+    </main>
+    
+    <script src="js/particles.js"></script>
+    <script src="js/cursor.js"></script>
+    <script src="js/audio.js"></script>
+    <script src="js/parallax.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
